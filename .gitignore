@@ -1,0 +1,5 @@
+FlatRedBallXna4Template.sln.metaproj
+FlatRedBallXna4Template.sln.metaproj.tmp
+obj/
+bin/
+*.generated.cs
