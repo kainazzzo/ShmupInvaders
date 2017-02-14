@@ -25,19 +25,19 @@
       </ReferencedFiles>
       <NamedObjects>
         <NamedObjectSave>
-          <SourceType>File</SourceType>
-          <SourceFile>GumProject/Screens/GameScreen.gusx</SourceFile>
-          <SourceName>BlueShipInstance (ShmupInvaders.GumRuntimes.BlueShipRuntime)</SourceName>
-          <InstanceName>BlueShipInstance</InstanceName>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\ShipEntity</SourceClassGenericType>
+          <InstanceName>ShipEntityList</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
         <NamedObjectSave>
-          <SourceType>FlatRedBallType</SourceType>
-          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
-          <SourceClassGenericType>Entities\ShipEntity</SourceClassGenericType>
-          <InstanceName>ShipEntityList</InstanceName>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/GameScreen.gusx</SourceFile>
+          <SourceName>this (ShmupInvaders.GumRuntimes.GameScreenRuntime)</SourceName>
+          <InstanceName>GameScreenRuntime</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>

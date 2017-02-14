@@ -10,7 +10,7 @@ using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
-
+using FlatRedBall.Gum.Animation;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Math.Splines;
 
@@ -35,7 +35,11 @@ namespace ShmupInvaders.Screens
 
 		void CustomActivity(bool firstTimeCalled)
 		{
-
+		    if (firstTimeCalled)
+		    {
+		        GameScreenRuntime.FlyAnimation.Play(this);
+		        GameScreenRuntime.FlyAnimation.EndReached += () => GameScreenRuntime.FlyAnimation.Play(this);
+		    }            
 
 		}
 
