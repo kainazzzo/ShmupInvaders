@@ -59,6 +59,39 @@
           <Type>int</Type>
           <DefaultValue xsi:type="xsd:int">64</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>StepDownPixels</Name>
+          <Type>int</Type>
+          <DefaultValue xsi:type="xsd:int">15</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>StepDownSpeedMultiplier</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">1.15</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>StartingXVelocity</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:int">75</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
       <NamedObjects>

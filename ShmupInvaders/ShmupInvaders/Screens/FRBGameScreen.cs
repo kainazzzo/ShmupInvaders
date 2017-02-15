@@ -62,7 +62,7 @@ namespace ShmupInvaders.Screens
 		    this.ShipContainerInstance.AxisAlignedRectangleInstance.Width = width;
 		    this.ShipContainerInstance.AxisAlignedRectangleInstance.Height = height;
 
-		    this.ShipContainerInstance.XVelocity = 50f;
+		    this.ShipContainerInstance.XVelocity = StartingXVelocity;
 
 		}
 
@@ -73,8 +73,12 @@ namespace ShmupInvaders.Screens
 
 		    cursor.Color = Color.White;
 
-		    this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1);
-            this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1);
+		    if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
+		        this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
+		    {
+		        this.ShipContainerInstance.Y -= StepDownPixels;
+		        this.ShipContainerInstance.XVelocity *= StepDownSpeedMultiplier;
+		    }
         }
 
 		void CustomDestroy()
