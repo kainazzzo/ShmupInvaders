@@ -45,6 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\ShipEntity\AnimationChainListFile.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnimationChainListFile</Name>
+    </None>
+    <None Include="Entities\ShipEntity\ships_void_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ships_void_0</Name>
+    </None>
     <None Include="GumProject\Components\BlueShip.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BlueShip</Name>
@@ -68,10 +76,6 @@
     <None Include="GumProject\Screens\MenuScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MenuScreen</Name>
-    </None>
-    <None Include="GumProject\ships_void_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>ships_void_0</Name>
     </None>
     <None Include="GumProject\Standards\Circle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -140,6 +144,10 @@
     <None Include="GumProject\Standards\Text.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Text</Name>
+    </None>
+    <None Include="ships_void_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ships_void_0</Name>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

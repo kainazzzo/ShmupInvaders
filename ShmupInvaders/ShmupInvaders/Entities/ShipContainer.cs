@@ -7,7 +7,6 @@ using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Debugging;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 
@@ -27,7 +26,7 @@ using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
 
 namespace ShmupInvaders.Entities
 {
-	public partial class ShipEntity
+	public partial class ShipContainer
 	{
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
@@ -36,11 +35,13 @@ namespace ShmupInvaders.Entities
         /// </summary>
 		private void CustomInitialize()
 		{
-            
+
+
 		}
 
 		private void CustomActivity()
 		{
+
 
 		}
 

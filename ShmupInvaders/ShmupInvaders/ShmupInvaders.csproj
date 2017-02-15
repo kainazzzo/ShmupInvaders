@@ -114,10 +114,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
+    <Compile Include="Entities\ShipContainer.cs" />
+    <Compile Include="Entities\ShipContainer.Generated.cs">
+      <DependentUpon>ShipContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ShipEntity.cs" />
     <Compile Include="Entities\ShipEntity.Generated.cs">
       <DependentUpon>ShipEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factories\ShipEntityFactory.Generated.cs" />
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GumCore\AnimationFrame.cs" />
     <Compile Include="GumCore\Atlas.cs" />
