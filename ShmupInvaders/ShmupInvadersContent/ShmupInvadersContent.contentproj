@@ -53,10 +53,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ships_void_0</Name>
     </None>
-    <None Include="GumProject\Components\BlueShip.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>BlueShip</Name>
-    </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>
@@ -68,10 +64,6 @@
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
-    </None>
-    <None Include="GumProject\Screens\GameScreen.gusx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>GameScreen</Name>
     </None>
     <None Include="GumProject\Screens\MenuScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -145,9 +137,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Text</Name>
     </None>
-    <None Include="ships_void_0.png">
+    <None Include="spritesheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>ships_void_0</Name>
+      <Name>spritesheet</Name>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

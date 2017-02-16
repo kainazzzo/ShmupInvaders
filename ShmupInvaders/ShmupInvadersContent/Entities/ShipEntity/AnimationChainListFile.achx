@@ -4,46 +4,10 @@
   <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
   <CoordinateType>Pixel</CoordinateType>
   <AnimationChain>
-    <Name>BlueShip</Name>
-    <ColorKey>0</ColorKey>
-    <Frame>
-      <TextureName>ships_void_0.png</TextureName>
-      <FrameLength>0.125</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>16</RightCoordinate>
-      <TopCoordinate>200</TopCoordinate>
-      <BottomCoordinate>238</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>ships_void_0.png</TextureName>
-      <FrameLength>0.125</FrameLength>
-      <LeftCoordinate>16</LeftCoordinate>
-      <RightCoordinate>32</RightCoordinate>
-      <TopCoordinate>200</TopCoordinate>
-      <BottomCoordinate>238</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>ships_void_0.png</TextureName>
-      <FrameLength>0.125</FrameLength>
-      <LeftCoordinate>32</LeftCoordinate>
-      <RightCoordinate>48</RightCoordinate>
-      <TopCoordinate>200</TopCoordinate>
-      <BottomCoordinate>238</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>ships_void_0.png</TextureName>
-      <FrameLength>0.125</FrameLength>
-      <LeftCoordinate>48</LeftCoordinate>
-      <RightCoordinate>64</RightCoordinate>
-      <TopCoordinate>200</TopCoordinate>
-      <BottomCoordinate>238</BottomCoordinate>
-    </Frame>
-  </AnimationChain>
-  <AnimationChain>
     <Name>OrangeShip</Name>
     <ColorKey>0</ColorKey>
     <Frame>
-      <TextureName>ships_void_0.png</TextureName>
+      <TextureName>../../spritesheet.png</TextureName>
       <FrameLength>0.125</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>16</RightCoordinate>
@@ -51,7 +15,7 @@
       <BottomCoordinate>478</BottomCoordinate>
     </Frame>
     <Frame>
-      <TextureName>ships_void_0.png</TextureName>
+      <TextureName>../../spritesheet.png</TextureName>
       <FrameLength>0.125</FrameLength>
       <LeftCoordinate>16</LeftCoordinate>
       <RightCoordinate>32</RightCoordinate>
@@ -59,7 +23,7 @@
       <BottomCoordinate>478</BottomCoordinate>
     </Frame>
     <Frame>
-      <TextureName>ships_void_0.png</TextureName>
+      <TextureName>../../spritesheet.png</TextureName>
       <FrameLength>0.125</FrameLength>
       <LeftCoordinate>32</LeftCoordinate>
       <RightCoordinate>48</RightCoordinate>
@@ -67,7 +31,7 @@
       <BottomCoordinate>478</BottomCoordinate>
     </Frame>
     <Frame>
-      <TextureName>ships_void_0.png</TextureName>
+      <TextureName>../../spritesheet.png</TextureName>
       <FrameLength>0.125</FrameLength>
       <LeftCoordinate>48</LeftCoordinate>
       <RightCoordinate>64</RightCoordinate>

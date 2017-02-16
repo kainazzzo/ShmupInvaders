@@ -114,6 +114,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
+    <Compile Include="Entities\PlayerBullet.cs" />
+    <Compile Include="Entities\PlayerBullet.Generated.cs">
+      <DependentUpon>PlayerBullet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PlayerShip.cs" />
+    <Compile Include="Entities\PlayerShip.Generated.cs">
+      <DependentUpon>PlayerShip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ShipContainer.cs" />
     <Compile Include="Entities\ShipContainer.Generated.cs">
       <DependentUpon>ShipContainer.cs</DependentUpon>
@@ -211,11 +219,9 @@
     <Compile Include="GumCore\VariableListSave.cs" />
     <Compile Include="GumCore\VariableSave.cs" />
     <Compile Include="GumCore\VariableSaveExtensionMethods.cs" />
-    <Compile Include="GumRuntimes\BlueShipRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ContainerRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\GameScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
     <Compile Include="GumRuntimes\MenuScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />

@@ -19,6 +19,7 @@ using Cursor = FlatRedBall.Gui.Cursor;
 using GuiManager = FlatRedBall.Gui.GuiManager;
 using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
+using ShmupInvaders.Entities;
 using ShmupInvaders.Factories;
 using ShmupInvaders.GumRuntimes;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -29,6 +30,7 @@ namespace ShmupInvaders.Screens
 {
 	public partial class FRBGameScreen
 	{
+	    private I1DInput playerShipInput;
 	    private AxisAlignedRectangle cursor;
 		void CustomInitialize()
 		{
@@ -64,9 +66,16 @@ namespace ShmupInvaders.Screens
 
 		    this.ShipContainerInstance.XVelocity = StartingXVelocity;
 
+		    
+            InitializeInput();
 		}
 
-		void CustomActivity(bool firstTimeCalled)
+	    private void InitializeInput()
+	    {
+	        playerShipInput = InputManager.Keyboard.Get1DInput(MoveLeftKey, MoveRightKey);
+	    }
+
+	    void CustomActivity(bool firstTimeCalled)
 		{
             cursor.X = GuiManager.Cursor.WorldXAt(0);
             cursor.Y = GuiManager.Cursor.WorldYAt(0);
@@ -79,9 +88,36 @@ namespace ShmupInvaders.Screens
 		        this.ShipContainerInstance.Y -= StepDownPixels;
 		        this.ShipContainerInstance.XVelocity *= StepDownSpeedMultiplier;
 		    }
-        }
 
-		void CustomDestroy()
+		    HandleInput();
+	        HandleCollisions();
+		}
+
+	    private void HandleCollisions()
+	    {
+	        PlayerShipInstance.CollideAgainstMove(LeftBoundary, 0, 1);
+	        PlayerShipInstance.CollideAgainstMove(RightBoundary, 0, 1);
+	    }
+
+	    private void HandleInput()
+	    {
+	        PlayerShipInstance.XVelocity = playerShipInput.Value*PlayerShipSpeed;
+
+	        if (PlayerShipInstance.XVelocity < 0)
+	        {
+	            PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Left;
+	        }
+            else if (PlayerShipInstance.XVelocity > 0)
+            {
+                PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Right;
+            }
+            else
+	        {
+	          PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
+	        }
+	    }
+
+	    void CustomDestroy()
 		{
 
 
