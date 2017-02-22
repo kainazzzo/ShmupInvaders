@@ -156,7 +156,7 @@
           </Properties>
           <Name>MaxBullets</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">3</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">20</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
@@ -326,11 +326,6 @@
       <NamedObjects>
         <NamedObjectSave>
           <CustomProperty>
-            <Type>float</Type>
-            <Member>TextureScale</Member>
-            <ValueAsFloat>1</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
             <Type>Texture2D</Type>
             <Member>Texture</Member>
             <ValueAsString>spritesheet</ValueAsString>
@@ -354,6 +349,11 @@
             <Type>float</Type>
             <Member>BottomTexturePixel</Member>
             <ValueAsFloat>218</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>TextureScale</Member>
+            <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
@@ -599,11 +599,6 @@
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
-            <Member>TextureScale</Member>
-            <ValueAsFloat>1</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
             <Member>LeftTexturePixel</Member>
             <ValueAsFloat>395</ValueAsFloat>
           </CustomProperty>
@@ -621,6 +616,11 @@
             <Type>float</Type>
             <Member>BottomTexturePixel</Member>
             <ValueAsFloat>490</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>TextureScale</Member>
+            <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
@@ -643,9 +643,9 @@
             <ValueAsString>spritesheet</ValueAsString>
           </CustomProperty>
           <CustomProperty>
-            <Type>float</Type>
-            <Member>TextureScale</Member>
-            <ValueAsFloat>1</ValueAsFloat>
+            <Type>bool</Type>
+            <Member>FlipHorizontal</Member>
+            <ValueAsBool>true</ValueAsBool>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -668,9 +668,9 @@
             <ValueAsFloat>490</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
-            <Type>bool</Type>
-            <Member>FlipHorizontal</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <Type>float</Type>
+            <Member>TextureScale</Member>
+            <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
@@ -693,9 +693,9 @@
             <ValueAsString>spritesheet</ValueAsString>
           </CustomProperty>
           <CustomProperty>
-            <Type>float</Type>
-            <Member>TextureScale</Member>
-            <ValueAsFloat>1</ValueAsFloat>
+            <Type>bool</Type>
+            <Member>FlipHorizontal</Member>
+            <ValueAsBool>true</ValueAsBool>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -718,9 +718,9 @@
             <ValueAsFloat>490</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
-            <Type>bool</Type>
-            <Member>FlipHorizontal</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <Type>float</Type>
+            <Member>TextureScale</Member>
+            <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
@@ -830,6 +830,11 @@
             <Member>Height</Member>
             <ValueAsFloat>32</ValueAsFloat>
           </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>true</ValueAsBool>
+          </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
           <SourceName />
@@ -929,7 +934,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>false</ValueAsBool>
+            <ValueAsBool>true</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />

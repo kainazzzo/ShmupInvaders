@@ -116,7 +116,7 @@
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\PlayerBullet.cs" />
     <Compile Include="Entities\PlayerBullet.Generated.cs">
-      <DependentUpon>playerbullet.cs</DependentUpon>
+      <DependentUpon>PlayerBullet.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\PlayerShip.cs" />
     <Compile Include="Entities\PlayerShip.Generated.cs">

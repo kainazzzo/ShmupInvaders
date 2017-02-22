@@ -30,63 +30,64 @@ namespace ShmupInvaders.Screens
 {
 	public partial class FRBGameScreen
 	{
-	    private I1DInput playerShipInput;
-	    private IPressableInput playerFireInput;
-
-	    private AxisAlignedRectangle cursor;
+	    private I1DInput _playerShipInput;
+	    private IPressableInput _playerFireInput;
+	    private Vector3 _initialShipContainerPosition;
+	    private int _wave = 1;
 
 
 		void CustomInitialize()
 		{
-		    cursor = new AxisAlignedRectangle(10, 10);
-		    SpriteManager.AddPositionedObject(cursor);
-		    cursor.Visible = false;
+		    _initialShipContainerPosition = ShipContainerInstance.Position;
 
-
-		    float width = ShipsPerRow*ColumnSpacing;
-            float height = Rows*RowSpacing;
-		    
-		    var currentY = 0;
-
-		    for (int row = 0; row < Rows; row++)
-		    {
-                var currentX = 0;
-                for (int shipCount = 0; shipCount < ShipsPerRow; shipCount++)
-		        {
-		            var ship = ShipEntityFactory.CreateNew();
-                    
-		            ship.AttachTo(ShipContainerInstance, false);
-
-		            ship.RelativeX = currentX - width/2.0f + ColumnSpacing/2.0f;
-		            ship.RelativeY = currentY - height/2.0f + RowSpacing/2.0f;
-		            currentX += ColumnSpacing;
-		        }
-
-		        currentY += RowSpacing;
-		    }
-
-            this.ShipContainerInstance.AxisAlignedRectangleInstance.Width = width;
-            this.ShipContainerInstance.AxisAlignedRectangleInstance.Height = height;
-
-            this.ShipContainerInstance.XVelocity = StartingXVelocity;
-
-		    
-            InitializeInput();
+		    InitializeShips();
+		    InitializeInput();
 		}
+
+	    private void InitializeShips()
+	    {
+	        
+	        float width = ShipsPerRow*ColumnSpacing;
+	        float height = Rows*RowSpacing;
+
+            ShipContainerInstance.Position = _initialShipContainerPosition;
+	        ShipContainerInstance.Y -= _wave*this.StepDownPixels;
+	        
+
+            var currentY = 0;
+
+	        for (int row = 0; row < Rows; row++)
+	        {
+	            var currentX = 0;
+	            for (int shipCount = 0; shipCount < ShipsPerRow; shipCount++)
+	            {
+	                var ship = ShipEntityFactory.CreateNew();
+
+	                ship.AttachTo(ShipContainerInstance, false);
+
+	                ship.RelativeX = currentX - width/2.0f + ColumnSpacing/2.0f;
+	                ship.RelativeY = currentY - height/2.0f + RowSpacing/2.0f;
+	                currentX += ColumnSpacing;
+	            }
+
+	            currentY += RowSpacing;
+	        }
+
+	        ShipContainerInstance.XVelocity = StartingXVelocity;
+	        
+	        ShipContainerInstance.AxisAlignedRectangleInstance.Height = height;
+
+            RecalculateContainerWidth();
+        }
 
 	    private void InitializeInput()
 	    {
-	        playerShipInput = InputManager.Keyboard.Get1DInput(MoveLeftKey, MoveRightKey);
-	        playerFireInput = InputManager.Keyboard.GetKey(FireBulletKey);
+	        _playerShipInput = InputManager.Keyboard.Get1DInput(MoveLeftKey, MoveRightKey);
+	        _playerFireInput = InputManager.Keyboard.GetKey(FireBulletKey);
 	    }
 
 	    void CustomActivity(bool firstTimeCalled)
 		{
-            cursor.X = GuiManager.Cursor.WorldXAt(0);
-            cursor.Y = GuiManager.Cursor.WorldYAt(0);
-
-		    cursor.Color = Color.White;
-
 		    if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
 		        this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
 		    {
@@ -112,27 +113,56 @@ namespace ShmupInvaders.Screens
 
 	    private void HandleCollisions()
 	    {
+	        HandlePlayerCollision();
+
+	        HandleBulletCollisions();
+	    }
+
+	    private void HandlePlayerCollision()
+	    {
+            // Stay in the screen
 	        PlayerShipInstance.CollideAgainstMove(LeftBoundary, 0, 1);
 	        PlayerShipInstance.CollideAgainstMove(RightBoundary, 0, 1);
 
-	        foreach (var playerBullet in PlayerBulletList)
+	        foreach (var enemy in ShipEntityList)
 	        {
-	            if (playerBullet.CollideAgainst(ShipContainerInstance))
+	            if (enemy.CollideAgainst(PlayerShipInstance))
 	            {
-	                foreach (var shipEntity in ShipEntityList)
-	                {
-	                    if (playerBullet.CollideAgainst(shipEntity))
-	                    {
-	                        shipEntity.Destroy();
-                            playerBullet.Destroy();
-	                        recalculateContainerWidth();
-	                    }
-	                }
+	                // Game over
+
 	            }
 	        }
 	    }
 
-	    private void recalculateContainerWidth()
+	    private void HandleBulletCollisions()
+	    {
+	        foreach (var playerBullet in PlayerBulletList)
+	        {
+	            if (!playerBullet.CollideAgainst(ShipContainerInstance)) continue;
+
+	            foreach (var shipEntity in ShipEntityList)
+	            {
+	                if (playerBullet.CollideAgainst(shipEntity))
+	                {
+	                    shipEntity.Destroy();
+	                    playerBullet.Destroy();
+	                    RecalculateContainerWidth();
+	                    break;
+	                }
+	            }
+	        }
+
+	        if (ShipEntityList.Count == 0)
+	        {
+	            // All ships destroyed. Start new wave:
+	            ++_wave;
+                InitializeShips();
+	            
+
+	        }
+	    }
+
+	    private void RecalculateContainerWidth()
 	    {
 	        if (ShipEntityList.Count > 0)
 	        {
@@ -149,7 +179,7 @@ namespace ShmupInvaders.Screens
 
 	    private void HandleInput()
 	    {
-	        PlayerShipInstance.XVelocity = playerShipInput.Value*PlayerShipSpeed;
+	        PlayerShipInstance.XVelocity = _playerShipInput.Value*PlayerShipSpeed;
 
 	        if (PlayerShipInstance.XVelocity < 0)
 	        {
@@ -164,7 +194,7 @@ namespace ShmupInvaders.Screens
 	          PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
 	        }
 
-	        if (playerFireInput.WasJustPressed && PlayerBulletList.Count < MaxBullets)
+	        if (_playerFireInput.WasJustPressed && PlayerBulletList.Count < MaxBullets)
 	        {
 	            var bullet = PlayerBulletFactory.CreateNew();
 	            bullet.Position = PlayerShipInstance.Position;
