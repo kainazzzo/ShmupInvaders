@@ -34,7 +34,7 @@ namespace ShmupInvaders.Screens
 	    private IPressableInput _playerFireInput;
 	    private Vector3 _initialShipContainerPosition;
 	    private int _wave = 1;
-
+	    private bool _gameOver = false;
 
 		void CustomInitialize()
 		{
@@ -88,17 +88,27 @@ namespace ShmupInvaders.Screens
 
 	    void CustomActivity(bool firstTimeCalled)
 		{
-		    if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
-		        this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
-		    {
-		        this.ShipContainerInstance.Y -= StepDownPixels;
-		        this.ShipContainerInstance.XVelocity *= StepDownSpeedMultiplier;
-		    }
+	        if (_gameOver == false)
+	        {
+	            if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
+	                this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
+	            {
+	                this.ShipContainerInstance.Y -= StepDownPixels;
+	                this.ShipContainerInstance.XVelocity *= StepDownSpeedMultiplier;
+	            }
 
-		    HandleInput();
-	        HandleCollisions();
-	        DestroyBullets();
+	            HandleInput();
+	            HandleCollisions();
+	            DestroyBullets();
+	        }
 		}
+
+	    private void GameOver()
+	    {
+	        _gameOver = true;
+	        PlayerShipInstance.XVelocity = 0;
+	        ShipContainerInstance.XVelocity = 0;
+	    }
 
 	    private void DestroyBullets()
 	    {
@@ -128,8 +138,7 @@ namespace ShmupInvaders.Screens
 	        {
 	            if (enemy.CollideAgainst(PlayerShipInstance))
 	            {
-	                // Game over
-
+	                GameOver();
 	            }
 	        }
 	    }
@@ -147,6 +156,7 @@ namespace ShmupInvaders.Screens
 	                    shipEntity.Destroy();
 	                    playerBullet.Destroy();
 	                    RecalculateContainerWidth();
+	                    Score += shipEntity.PointValue;
 	                    break;
 	                }
 	            }
@@ -194,7 +204,7 @@ namespace ShmupInvaders.Screens
 	          PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
 	        }
 
-	        if (_playerFireInput.WasJustPressed && PlayerBulletList.Count < MaxBullets)
+	        if (_playerFireInput.IsDown && PlayerBulletList.Count < MaxBullets)
 	        {
 	            var bullet = PlayerBulletFactory.CreateNew();
 	            bullet.Position = PlayerShipInstance.Position;

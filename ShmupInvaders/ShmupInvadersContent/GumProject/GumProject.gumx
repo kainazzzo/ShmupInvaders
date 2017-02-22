@@ -8,9 +8,17 @@
   <RestrictToUnitValues>true</RestrictToUnitValues>
   <Guides />
   <ScreenReference>
+    <Name>MainGameScreen</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>MenuScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
+  <ComponentReference>
+    <Name>Score</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
   <StandardElementReference>
     <Name>Circle</Name>
     <ElementType>Standard</ElementType>

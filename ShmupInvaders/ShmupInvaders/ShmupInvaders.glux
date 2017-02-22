@@ -14,6 +14,14 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
+      <Events>
+        <EventResponseSave>
+          <EventName>AfterScoreSet</EventName>
+          <SourceVariable>Score</SourceVariable>
+          <BeforeOrAfter>After</BeforeOrAfter>
+          <DelegateType />
+        </EventResponseSave>
+      </Events>
       <CustomVariables>
         <CustomVariable>
           <Properties>
@@ -156,10 +164,29 @@
           </Properties>
           <Name>MaxBullets</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">20</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">2000</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Score</Name>
+          <Type>int</Type>
+          <CreatesEvent>true</CreatesEvent>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
+      <ReferencedFiles>
+        <ReferencedFileSave>
+          <Name>GumProject/Screens/MainGameScreen.gusx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>FlatRedBall.Gum.GumIdb</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+      </ReferencedFiles>
       <NamedObjects>
         <NamedObjectSave>
           <CustomProperty>
@@ -263,6 +290,15 @@
           <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
           <SourceClassGenericType>Entities\PlayerBullet</SourceClassGenericType>
           <InstanceName>PlayerBulletList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/MainGameScreen.gusx</SourceFile>
+          <SourceName>ScoreInstance (ShmupInvaders.GumRuntimes.ScoreRuntime)</SourceName>
+          <InstanceName>ScoreInstance</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
@@ -833,7 +869,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
@@ -890,6 +926,17 @@
           <Name>Z</Name>
           <Type>float</Type>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>PointValue</Name>
+          <Type>int</Type>
+          <DefaultValue xsi:type="xsd:int">30</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <BaseEntity />
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
@@ -934,7 +981,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />

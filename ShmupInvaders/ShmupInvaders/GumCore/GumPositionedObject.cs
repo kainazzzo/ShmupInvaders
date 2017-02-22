@@ -2,6 +2,7 @@
 using FlatRedBall.Math;
 using FlatRedBall.Math.Geometry;
 using Gum.Wireframe;
+
 using RenderingLibrary.Graphics;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -24,7 +25,7 @@ namespace FlatRedBall.Gum
             }
         }
 
-        protected ShapeCollection collision = new ShapeCollection();
+        protected ShapeCollection collision;
         public ShapeCollection Collision => collision;
         #endregion
 
@@ -103,6 +104,9 @@ namespace FlatRedBall.Gum
             MapCircle(childAsCircle, circle);
             circle.AttachTo(this, false);
             this.collision.Circles.Add(circle);
+
+            circle.Visible = true;
+            circle.Color = Color.Blue;
         }
 
         private void MapCircle(CircleRuntime childAsCircle, Circle circle)

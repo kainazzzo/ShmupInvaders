@@ -53,6 +53,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ships_void_0</Name>
     </None>
+    <None Include="GumProject\Components\Score.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Score</Name>
+    </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>
@@ -61,9 +65,69 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
     </None>
+    <None Include="GumProject\FontCache\Font18Rockwell.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Rockwell</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Rockwell_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Rockwell_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Verdana.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Verdana</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Verdana_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Verdana_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font24Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font24Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font24Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font24Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Rockwell.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Rockwell</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Rockwell_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Rockwell_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Segoe UI Black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Segoe UI Black</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Segoe UI Black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Segoe UI Black_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Sitka Heading.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Sitka Heading</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Sitka Heading_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Sitka Heading_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Verdana.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Verdana</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font36Verdana_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font36Verdana_0</Name>
+    </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
+    </None>
+    <None Include="GumProject\Screens\MainGameScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MainGameScreen</Name>
     </None>
     <None Include="GumProject\Screens\MenuScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
