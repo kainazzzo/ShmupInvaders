@@ -9,6 +9,7 @@ using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Debugging;
+using FlatRedBall.Graphics;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Gum.Animation;
@@ -153,8 +154,23 @@ namespace ShmupInvaders.Screens
 	            {
 	                if (playerBullet.CollideAgainst(shipEntity))
 	                {
-	                    shipEntity.Destroy();
-	                    playerBullet.Destroy();
+                        playerBullet.Destroy();
+
+                        shipEntity.SpriteInstance.ColorOperation = ColorOperation.Add;
+
+	                    shipEntity.SpriteInstance.Red = 255f;
+	                    shipEntity.SpriteInstance.Blue = 255f;
+	                    shipEntity.SpriteInstance.Green = 255f;
+
+	                    this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
+	                        .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+                        
+
+                        if (shipEntity.TotalHits++ < shipEntity.HitsToKill-1) continue;
+
+                        this.Call(shipEntity.Destroy).After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+                        
+	                    
 	                    RecalculateContainerWidth();
 	                    Score += shipEntity.PointValue;
 	                    break;
@@ -167,8 +183,6 @@ namespace ShmupInvaders.Screens
 	            // All ships destroyed. Start new wave:
 	            ++_wave;
                 InitializeShips();
-	            
-
 	        }
 	    }
 
@@ -204,7 +218,7 @@ namespace ShmupInvaders.Screens
 	          PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
 	        }
 
-	        if (_playerFireInput.IsDown && PlayerBulletList.Count < MaxBullets)
+	        if (_playerFireInput.WasJustPressed && PlayerBulletList.Count < MaxBullets)
 	        {
 	            var bullet = PlayerBulletFactory.CreateNew();
 	            bullet.Position = PlayerShipInstance.Position;

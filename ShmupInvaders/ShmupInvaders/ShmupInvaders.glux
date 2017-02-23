@@ -153,7 +153,7 @@
           </Properties>
           <Name>PlayerBulletSpeed</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">500</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">1500</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -164,7 +164,7 @@
           </Properties>
           <Name>MaxBullets</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">2000</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">2</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -369,22 +369,22 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>LeftTexturePixel</Member>
-            <ValueAsFloat>881</ValueAsFloat>
+            <ValueAsFloat>898</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
             <Member>RightTexturePixel</Member>
-            <ValueAsFloat>890</ValueAsFloat>
+            <ValueAsFloat>909</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
             <Member>TopTexturePixel</Member>
-            <ValueAsFloat>207</ValueAsFloat>
+            <ValueAsFloat>179</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
             <Member>BottomTexturePixel</Member>
-            <ValueAsFloat>218</ValueAsFloat>
+            <ValueAsFloat>197</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -419,8 +419,13 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Radius</Member>
-            <ValueAsFloat>5</ValueAsFloat>
+            <Member>Width</Member>
+            <ValueAsFloat>10</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Height</Member>
+            <ValueAsFloat>18</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
@@ -430,8 +435,8 @@
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
           <SourceName />
-          <SourceClassType>Circle</SourceClassType>
-          <InstanceName>CircleInstance</InstanceName>
+          <SourceClassType>AxisAlignedRectangle</SourceClassType>
+          <InstanceName>AxisAlignedRectangleInstance</InstanceName>
           <HasPublicProperty>true</HasPublicProperty>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
@@ -937,6 +942,17 @@
           <Type>int</Type>
           <DefaultValue xsi:type="xsd:int">30</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>HitsToKill</Name>
+          <Type>int</Type>
+          <DefaultValue xsi:type="xsd:int">2</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <BaseEntity />
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
@@ -963,6 +979,7 @@
           <SourceName />
           <SourceClassType>Sprite</SourceClassType>
           <InstanceName>SpriteInstance</InstanceName>
+          <HasPublicProperty>true</HasPublicProperty>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
