@@ -114,6 +114,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
+    <Compile Include="Entities\ColorLine.cs" />
+    <Compile Include="Entities\ColorLine.Generated.cs">
+      <DependentUpon>ColorLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\LineSpawner.cs" />
+    <Compile Include="Entities\LineSpawner.Generated.cs">
+      <DependentUpon>LineSpawner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\PlayerBullet.cs" />
     <Compile Include="Entities\PlayerBullet.Generated.cs">
       <DependentUpon>PlayerBullet.cs</DependentUpon>
@@ -130,6 +138,7 @@
     <Compile Include="Entities\ShipEntity.Generated.cs">
       <DependentUpon>ShipEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factories\ColorLineFactory.Generated.cs" />
     <Compile Include="Factories\PlayerBulletFactory.Generated.cs" />
     <Compile Include="Factories\ShipEntityFactory.Generated.cs" />
     <Compile Include="GlobalContent.Generated.cs" />

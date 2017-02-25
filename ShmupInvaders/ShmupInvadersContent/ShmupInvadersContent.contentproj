@@ -206,6 +206,28 @@
       <Name>spritesheet</Name>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sounds\damage.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>damage</Name>
+    </Compile>
+    <Compile Include="Sounds\explosion_0.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>explosion_0</Name>
+    </Compile>
+    <Compile Include="Sounds\laser5_0.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>laser5_0</Name>
+    </Compile>
+    <Compile Include="Sounds\laser6_0.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>laser6_0</Name>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

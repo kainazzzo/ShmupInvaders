@@ -20,6 +20,7 @@ using FlatRedBall.Math.Splines;
 using Cursor = FlatRedBall.Gui.Cursor;
 using GuiManager = FlatRedBall.Gui.GuiManager;
 using FlatRedBall.Localization;
+using FlatRedBall.Math.Statistics;
 using Microsoft.Xna.Framework;
 using ShmupInvaders.Entities;
 using ShmupInvaders.Factories;
@@ -37,9 +38,11 @@ namespace ShmupInvaders.Screens
 	    private IPressableInput _playerFireInput;
 	    private Vector3 _initialShipContainerPosition;
 	    private int _wave = 1;
-	    private bool _gameOver = false;
+	    private bool _gameOver;
 
-		void CustomInitialize()
+	    private static readonly string[] WaveColors = { "Purple", "Orange", "Green", "Blue" };
+
+	    void CustomInitialize()
 		{
 		    _initialShipContainerPosition = ShipContainerInstance.Position;
 
@@ -59,27 +62,92 @@ namespace ShmupInvaders.Screens
 
             var currentY = 0;
 
+	        var color = WaveColors[_wave%WaveColors.Length];
+
 	        for (int row = 0; row < Rows; row++)
 	        {
 	            var currentX = 0;
-	            for (int shipCount = 0; shipCount < ShipsPerRow; shipCount++)
+	            
+                for (int shipCount = 0; shipCount < ShipsPerRow; shipCount++)
 	            {
 	                var ship = ShipEntityFactory.CreateNew();
-	                if (row%4 == 0)
+
+                    if (row%4 == 0)
 	                {
-	                    ship.SpriteInstance.CurrentChainName = "OrangeHorseshoe";
-	                    ship.SpriteInstance.TextureScale = 1.25f;
+	                    if (color.Equals("Blue", StringComparison.Ordinal))
+	                    {
+	                        ship.CurrentState = ShipEntity.VariableState.BlueHorseshoe;
+	                    }
+                        else if (color.Equals("Orange", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.OrangeHorseshoe;
+                        }
+                        else if (color.Equals("Green", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.GreenHorseshoe;
+                        }
+                        else if (color.Equals("Purple", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.PurpleHorseshoe;
+                        }
 	                }
 	                else if (row%3 == 0)
 	                {
-	                    ship.SpriteInstance.CurrentChainName = "OrangeTea";
-	                    ship.SpriteInstance.TextureScale = 1.25f;
+                        if (color.Equals("Blue", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.BlueTea;
+                        }
+                        else if (color.Equals("Orange", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.OrangeTea;
+                        }
+                        else if (color.Equals("Green", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.GreenTea;
+                        }
+                        else if (color.Equals("Purple", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.PurpleTea;
+                        }
 	                }
 	                else if (row%2 == 0)
 	                {
-	                    ship.SpriteInstance.CurrentChainName = "OrangeEye";
-	                    ship.SpriteInstance.TextureScale = .8f;
+	                    if (color.Equals("Blue", StringComparison.Ordinal))
+	                    {
+	                        ship.CurrentState = ShipEntity.VariableState.BlueEye;
+	                    }
+	                    else if (color.Equals("Orange", StringComparison.Ordinal))
+	                    {
+	                        ship.CurrentState = ShipEntity.VariableState.OrangeEye;
+	                    }
+	                    else if (color.Equals("Green", StringComparison.Ordinal))
+	                    {
+	                        ship.CurrentState = ShipEntity.VariableState.GreenEye;
+	                    }
+	                    else if (color.Equals("Purple", StringComparison.Ordinal))
+	                    {
+	                        ship.CurrentState = ShipEntity.VariableState.PurpleEye;
+	                    }
 	                }
+	                else
+	                {
+                        if (color.Equals("Blue", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.BlueShip;
+                        }
+                        else if (color.Equals("Orange", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.OrangeShip;
+                        }
+                        else if (color.Equals("Green", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.GreenShip;
+                        }
+                        else if (color.Equals("Purple", StringComparison.Ordinal))
+                        {
+                            ship.CurrentState = ShipEntity.VariableState.PurpleShip;
+                        }
+                    }
                     
 
 	                ship.AttachTo(ShipContainerInstance, false);
@@ -214,20 +282,15 @@ namespace ShmupInvaders.Screens
 	                {
                         playerBullet.Destroy();
 
-                        shipEntity.SpriteInstance.ColorOperation = ColorOperation.Add;
-
-	                    shipEntity.SpriteInstance.Red = 255f;
-	                    shipEntity.SpriteInstance.Blue = 255f;
-	                    shipEntity.SpriteInstance.Green = 255f;
-
-
-
+                        FlashEnemyShip(shipEntity);
 
 
 	                    if (shipEntity.TotalHits++ < shipEntity.HitsToKill - 1)
 	                    {
 	                        this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
 	                            .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+                            
+                            shipEntity.DamageInstance.Play();
 	                        continue;
 	                    }
 	                    else
@@ -238,6 +301,7 @@ namespace ShmupInvaders.Screens
 	                    shipEntity.SpriteInstance.CurrentChainName = "Explosion";
 	                    shipEntity.SpriteInstance.TextureScale = .6f;
                         shipEntity.Detach();
+                        shipEntity.ExplosionInstance.Play();
 
 	                    this.Call(() =>
 	                    {
@@ -257,6 +321,15 @@ namespace ShmupInvaders.Screens
 	            ++_wave;
                 InitializeShips();
 	        }
+	    }
+
+	    private static void FlashEnemyShip(ShipEntity shipEntity)
+	    {
+	        shipEntity.SpriteInstance.ColorOperation = ColorOperation.Add;
+
+	        shipEntity.SpriteInstance.Red = 255f;
+	        shipEntity.SpriteInstance.Blue = 255f;
+	        shipEntity.SpriteInstance.Green = 255f;
 	    }
 
 	    private void RecalculateContainerWidth()
@@ -297,6 +370,7 @@ namespace ShmupInvaders.Screens
 	            bullet.Position = PlayerShipInstance.Position;
 	            bullet.Y += 22;
 	            bullet.YVelocity = PlayerBulletSpeed;
+                PlayerShipInstance.LaserInstance.Play();
             }
 	    }
 
