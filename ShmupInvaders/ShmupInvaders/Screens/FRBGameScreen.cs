@@ -65,6 +65,22 @@ namespace ShmupInvaders.Screens
 	            for (int shipCount = 0; shipCount < ShipsPerRow; shipCount++)
 	            {
 	                var ship = ShipEntityFactory.CreateNew();
+	                if (row%4 == 0)
+	                {
+	                    ship.SpriteInstance.CurrentChainName = "OrangeHorseshoe";
+	                    ship.SpriteInstance.TextureScale = 1.25f;
+	                }
+	                else if (row%3 == 0)
+	                {
+	                    ship.SpriteInstance.CurrentChainName = "OrangeTea";
+	                    ship.SpriteInstance.TextureScale = 1.25f;
+	                }
+	                else if (row%2 == 0)
+	                {
+	                    ship.SpriteInstance.CurrentChainName = "OrangeEye";
+	                    ship.SpriteInstance.TextureScale = .8f;
+	                }
+                    
 
 	                ship.AttachTo(ShipContainerInstance, false);
 
@@ -111,7 +127,7 @@ namespace ShmupInvaders.Screens
 	                        ShipContainerInstance.XVelocity = currentXVelocity*StepDownSpeedMultiplier;
 	                    };
 
-	                this.Call(ShakeScreen).After(.2);
+	                //this.Call(ShakeScreen).After(.2);
 
 
 	            }
