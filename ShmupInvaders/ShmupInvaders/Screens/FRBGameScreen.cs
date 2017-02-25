@@ -9,6 +9,7 @@ using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Debugging;
+using FlatRedBall.Glue.StateInterpolation;
 using FlatRedBall.Graphics;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
@@ -23,6 +24,7 @@ using Microsoft.Xna.Framework;
 using ShmupInvaders.Entities;
 using ShmupInvaders.Factories;
 using ShmupInvaders.GumRuntimes;
+using StateInterpolationPlugin;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using Vector3 = Microsoft.Xna.Framework.Vector3;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
@@ -94,8 +96,24 @@ namespace ShmupInvaders.Screens
 	            if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
 	                this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
 	            {
-	                this.ShipContainerInstance.Y -= StepDownPixels;
-	                this.ShipContainerInstance.XVelocity *= StepDownSpeedMultiplier;
+
+	                var currentXVelocity = ShipContainerInstance.XVelocity;
+	                ShipContainerInstance.XVelocity = 0;
+
+                    
+                    
+
+	                this.ShipContainerInstance.Tween("Y")
+	                    .To(this.ShipContainerInstance.Y - StepDownPixels)
+	                    .During(.5)
+	                    .Using(InterpolationType.Bounce, Easing.Out).Ended += () =>
+	                    {
+	                        ShipContainerInstance.XVelocity = currentXVelocity*StepDownSpeedMultiplier;
+	                    };
+
+	                this.Call(ShakeScreen).After(.2);
+
+
 	            }
 
 	            HandleInput();
@@ -104,7 +122,31 @@ namespace ShmupInvaders.Screens
 	        }
 		}
 
-	    private void GameOver()
+        private void ShakeScreen()
+        {
+            var shakerX = new ShakeTweener
+            {
+                Amplitude = 20f,
+                Duration = .275f
+            };
+
+            var shakerY = new ShakeTweener
+            {
+                Amplitude = 10f,
+                MaxAmplitude = 10f,
+                Duration = .275f
+            };
+
+
+
+            TweenerManager.Self.Add(shakerY);
+
+
+            
+            shakerY.PositionChanged += position => Camera.Main.Position.Y = position;
+        }
+
+        private void GameOver()
 	    {
 	        _gameOver = true;
 	        PlayerShipInstance.XVelocity = 0;
@@ -152,7 +194,7 @@ namespace ShmupInvaders.Screens
 
 	            foreach (var shipEntity in ShipEntityList)
 	            {
-	                if (playerBullet.CollideAgainst(shipEntity))
+	                if (playerBullet.CollideAgainst(shipEntity) && shipEntity.SpriteInstance.CurrentChainName != "Explosion")
 	                {
                         playerBullet.Destroy();
 
@@ -162,16 +204,30 @@ namespace ShmupInvaders.Screens
 	                    shipEntity.SpriteInstance.Blue = 255f;
 	                    shipEntity.SpriteInstance.Green = 255f;
 
-	                    this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
-	                        .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
-                        
 
-                        if (shipEntity.TotalHits++ < shipEntity.HitsToKill-1) continue;
 
-                        this.Call(shipEntity.Destroy).After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+
+
+	                    if (shipEntity.TotalHits++ < shipEntity.HitsToKill - 1)
+	                    {
+	                        this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
+	                            .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+	                        continue;
+	                    }
+	                    else
+	                    {
+	                        shipEntity.SpriteInstance.ColorOperation = ColorOperation.None;
+	                    }
+
+	                    shipEntity.SpriteInstance.CurrentChainName = "Explosion";
+	                    shipEntity.SpriteInstance.TextureScale = .6f;
+
+	                    this.Call(() =>
+	                    {
+	                        shipEntity.Destroy();
+	                        RecalculateContainerWidth();
+	                    }).After(.55);
                         
-	                    
-	                    RecalculateContainerWidth();
 	                    Score += shipEntity.PointValue;
 	                    break;
 	                }

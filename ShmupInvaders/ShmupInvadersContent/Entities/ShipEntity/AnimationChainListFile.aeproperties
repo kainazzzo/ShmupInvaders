@@ -2,4 +2,5 @@
 <AESettingsSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OffsetMultiplier>1</OffsetMultiplier>
   <ExpandedNode>OrangeShip</ExpandedNode>
+  <ExpandedNode>Explosion</ExpandedNode>
 </AESettingsSave>
