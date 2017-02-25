@@ -237,6 +237,7 @@ namespace ShmupInvaders.Screens
 
 	                    shipEntity.SpriteInstance.CurrentChainName = "Explosion";
 	                    shipEntity.SpriteInstance.TextureScale = .6f;
+                        shipEntity.Detach();
 
 	                    this.Call(() =>
 	                    {

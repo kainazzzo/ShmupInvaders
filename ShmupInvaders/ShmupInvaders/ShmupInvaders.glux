@@ -14,14 +14,6 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
-      <Events>
-        <EventResponseSave>
-          <EventName>AfterScoreSet</EventName>
-          <SourceVariable>Score</SourceVariable>
-          <BeforeOrAfter>After</BeforeOrAfter>
-          <DelegateType />
-        </EventResponseSave>
-      </Events>
       <CustomVariables>
         <CustomVariable>
           <Properties>
@@ -170,12 +162,22 @@
           <Properties>
             <PropertySave>
               <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+            <PropertySave>
+              <Name>OverridingPropertyType</Name>
               <ValueAsString>int</ValueAsString>
+            </PropertySave>
+            <PropertySave>
+              <Name>TypeConverter</Name>
+              <ValueAsString>&lt;default&gt;</ValueAsString>
             </PropertySave>
           </Properties>
           <Name>Score</Name>
-          <Type>int</Type>
-          <CreatesEvent>true</CreatesEvent>
+          <Type>string</Type>
+          <DefaultValue xsi:type="xsd:int">0</DefaultValue>
+          <SourceObject>ScoreInstance</SourceObject>
+          <SourceObjectProperty>TextValue</SourceObjectProperty>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
@@ -362,14 +364,24 @@
         </NamedObjectSave>
         <NamedObjectSave>
           <CustomProperty>
-            <Type>Texture2D</Type>
-            <Member>Texture</Member>
-            <ValueAsString>spritesheet</ValueAsString>
+            <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>200</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
-            <Member>TextureScale</Member>
-            <ValueAsFloat>0.25</ValueAsFloat>
+            <Member>Y</Member>
+            <ValueAsFloat>150</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>-99</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>Texture2D</Type>
+            <Member>Texture</Member>
+            <ValueAsString>spritesheet</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -393,18 +405,8 @@
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Z</Member>
-            <ValueAsFloat>-99</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>X</Member>
-            <ValueAsFloat>200</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>Y</Member>
-            <ValueAsFloat>150</ValueAsFloat>
+            <Member>TextureScale</Member>
+            <ValueAsFloat>0.25</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>

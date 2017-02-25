@@ -12,10 +12,7 @@ namespace ShmupInvaders.Screens
 {
 	public partial class FRBGameScreen
 	{
-        void OnAfterScoreSet (object sender, EventArgs e)
-        {
-            this.ScoreInstance.TextValue = this.Score.ToString();
-        }
+     
 		
 	}
 }
