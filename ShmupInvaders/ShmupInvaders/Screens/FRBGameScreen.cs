@@ -41,14 +41,30 @@ namespace ShmupInvaders.Screens
 	    private bool _gameOver;
 
 	    private static readonly string[] WaveColors = { "Purple", "Orange", "Green", "Blue" };
+        private bool _newWave = false;
 
 	    void CustomInitialize()
 		{
 		    _initialShipContainerPosition = ShipContainerInstance.Position;
 
-		    InitializeShips();
+		    
 		    InitializeInput();
-		}
+
+	        LineSpawnerInstance.FastSpeed(true);
+
+
+
+            MainGumScreenGlueInstance.FlyInAnimation.Play(this);
+	        _newWave = true;
+            
+            this.Call(() =>
+            {
+                InitializeShips();
+                LineSpawnerInstance.FastSpeed(false);
+                _newWave = false;
+                WaveIndicatorInstance.Visible = false;
+            }).After(4);
+        }
 
 	    private void InitializeShips()
 	    {
@@ -175,7 +191,7 @@ namespace ShmupInvaders.Screens
 
 	    void CustomActivity(bool firstTimeCalled)
 		{
-	        if (_gameOver == false)
+	        if (_gameOver == false && _newWave == false)
 	        {
 	            if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
 	                this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
@@ -183,10 +199,7 @@ namespace ShmupInvaders.Screens
 
 	                var currentXVelocity = ShipContainerInstance.XVelocity;
 	                ShipContainerInstance.XVelocity = 0;
-
                     
-                    
-
 	                this.ShipContainerInstance.Tween("Y")
 	                    .To(this.ShipContainerInstance.Y - StepDownPixels)
 	                    .During(.5)
@@ -315,12 +328,27 @@ namespace ShmupInvaders.Screens
 	            }
 	        }
 
-	        if (ShipEntityList.Count == 0)
+	        if (ShipEntityList.Count == 0 && !_newWave)
 	        {
+	            _newWave = true;
 	            // All ships destroyed. Start new wave:
-	            ++_wave;
-                InitializeShips();
-	        }
+	            LineSpawnerInstance.FastSpeed(true);
+
+	            
+	            WaveIndicatorInstance.Visible = true;
+                MainGumScreenGlueInstance.FlyInAnimation.Play(this);
+	            WaveDisplay = _wave + 1;
+
+                this.Call(() =>
+                {
+                    ++_wave;
+                    InitializeShips();
+                    LineSpawnerInstance.FastSpeed(false);
+                    WaveIndicatorInstance.Visible = false;
+                    _newWave = false;
+                    WaveIndicatorInstance.ApplyState("WaveState", "FlyInStart");
+                }).After(4);
+            }
 	    }
 
 	    private static void FlashEnemyShip(ShipEntity shipEntity)

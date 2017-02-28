@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ElementAnimationsSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Animations>
+    <AnimationSave>
+      <Loops>false</Loops>
+      <Name>FlyIn</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>WaveState/FlyInStart</StateName>
+          <Time>0</Time>
+          <InterpolationType>Elastic</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>WaveState/FlyInEnd</StateName>
+          <Time>1.25</Time>
+          <InterpolationType>Elastic</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+  </Animations>
+</ElementAnimationsSave>

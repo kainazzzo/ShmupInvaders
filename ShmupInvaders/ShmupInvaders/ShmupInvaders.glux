@@ -179,6 +179,27 @@
           <SourceObject>ScoreInstance</SourceObject>
           <SourceObjectProperty>TextValue</SourceObjectProperty>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+            <PropertySave>
+              <Name>OverridingPropertyType</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+            <PropertySave>
+              <Name>TypeConverter</Name>
+              <ValueAsString>&lt;default&gt;</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WaveDisplay</Name>
+          <Type>string</Type>
+          <DefaultValue xsi:type="xsd:int">1</DefaultValue>
+          <SourceObject>WaveIndicatorInstance</SourceObject>
+          <SourceObjectProperty>WaveTextInstanceText</SourceObjectProperty>
+        </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
       <ReferencedFiles>
@@ -200,7 +221,7 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>Y</Member>
-            <ValueAsFloat>125</ValueAsFloat>
+            <ValueAsFloat>150</ValueAsFloat>
           </CustomProperty>
           <SourceType>Entity</SourceType>
           <SourceClassType>Entities\ShipContainer</SourceClassType>
@@ -440,6 +461,24 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/MainGameScreen.gusx</SourceFile>
+          <SourceName>this (ShmupInvaders.GumRuntimes.MainGameScreenRuntime)</SourceName>
+          <InstanceName>MainGumScreenGlueInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/MainGameScreen.gusx</SourceFile>
+          <SourceName>WaveIndicatorInstance (ShmupInvaders.GumRuntimes.WaveIndicatorRuntime)</SourceName>
+          <InstanceName>WaveIndicatorInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
     </ScreenSave>
     <ScreenSave>
@@ -499,6 +538,16 @@
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Width</Member>
+            <ValueAsFloat>2</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>ColorOperation</Type>
+            <Member>ColorOperation</Member>
+            <ValueAsInt>6</ValueAsInt>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>Red</Member>
             <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
@@ -511,16 +560,6 @@
             <Type>float</Type>
             <Member>Blue</Member>
             <ValueAsFloat>1</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>ColorOperation</Type>
-            <Member>ColorOperation</Member>
-            <ValueAsInt>6</ValueAsInt>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>Width</Member>
-            <ValueAsFloat>2</ValueAsFloat>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
@@ -1190,6 +1229,12 @@
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Sounds/laser5_0.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
@@ -1860,18 +1905,36 @@
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Sounds/laser6_0.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Sounds/explosion_0.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Sounds/damage.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
@@ -1890,24 +1953,48 @@
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
     <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>UseContentPipeline</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
       <Name>Sounds/damage.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
     <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>UseContentPipeline</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
       <Name>Sounds/explosion_0.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
     <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>UseContentPipeline</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
       <Name>Sounds/laser5_0.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
     <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>UseContentPipeline</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
       <Name>Sounds/laser6_0.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>

@@ -57,6 +57,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Score</Name>
     </None>
+    <None Include="GumProject\Components\WaveIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WaveIndicator</Name>
+    </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>
@@ -64,6 +68,14 @@
     <None Include="GumProject\FontCache\Font18Arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Franklin Gothic Book.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Franklin Gothic Book</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Franklin Gothic Book_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Franklin Gothic Book_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font18Rockwell.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -80,6 +92,14 @@
     <None Include="GumProject\FontCache\Font18Verdana_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Verdana_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Vivaldi.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Vivaldi</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Vivaldi_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Vivaldi_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font24Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -120,6 +140,38 @@
     <None Include="GumProject\FontCache\Font36Verdana_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font36Verdana_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Verdana.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Verdana</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Verdana_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Verdana_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Verdana_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Verdana_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Verdana.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Verdana</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Verdana_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Verdana_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Verdana_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Verdana_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Verdana_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Verdana_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Verdana_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Verdana_3</Name>
     </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -240,6 +240,7 @@
     <Compile Include="GumRuntimes\ScoreRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\WaveIndicatorRuntime.Generated.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,16 +15,82 @@
       <Value xsi:type="xsd:int">4</Value>
       <SetsValue>true</SetsValue>
     </Variable>
-    <VariableList xsi:type="VariableListSaveOfString">
+    <Variable>
+      <Type>State</Type>
+      <Name>WaveIndicatorInstance.State</Name>
+      <Value xsi:type="xsd:string">Default</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>WaveIndicatorInstance.Visible</Name>
+      <ExposedAsName>WaveIndicatorInstanceVisible</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
       <Type>string</Type>
-      <Name>AnimationFrames</Name>
-      <IsFile>false</IsFile>
-      <IsHiddenInPropertyGrid>false</IsHiddenInPropertyGrid>
-      <Value />
-    </VariableList>
+      <Name>WaveIndicatorInstance.WaveTextInstanceText</Name>
+      <ExposedAsName>WaveIndicatorInstanceWaveTextInstanceText</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>WaveIndicatorInstance.X Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>WaveIndicatorInstance.X Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>WaveIndicatorInstance.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>WaveIndicatorInstance.Y Units</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>WaveStateState</Type>
+      <Name>WaveStateState</Name>
+      <SetsValue>false</SetsValue>
+    </Variable>
   </State>
+  <Category>
+    <Name>WaveState</Name>
+    <State>
+      <Name>FlyInStart</Name>
+    </State>
+    <State>
+      <Name>FlyInEnd</Name>
+      <Variable>
+        <Type>float</Type>
+        <Name>WaveIndicatorInstance.X</Name>
+        <Value xsi:type="xsd:float">525</Value>
+        <ExposedAsName>WaveIndicatorInstanceX</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>WaveIndicatorInstance.Y</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+  </Category>
   <Instance>
     <Name>ScoreInstance</Name>
     <BaseType>Score</BaseType>
+  </Instance>
+  <Instance>
+    <Name>WaveIndicatorInstance</Name>
+    <BaseType>WaveIndicator</BaseType>
   </Instance>
 </ScreenSave>

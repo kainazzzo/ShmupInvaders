@@ -31,7 +31,8 @@ namespace ShmupInvaders.Entities
 {
 	public partial class LineSpawner
 	{
-	    private float _speedExponent;
+
+	    public float SpeedExponent { get; set; }
 	    private float _maxLines;
 
 	    /// <summary>
@@ -44,29 +45,28 @@ namespace ShmupInvaders.Entities
             ColorLineFactory.Initialize(this.ColorLineList, ContentManagerName);
 		}
 
+	    public void FastSpeed(bool enable)
+	    {
+	        if ((Math.Abs(SpeedExponent - FastExponent) < .0001f) != enable)
+	        {
+	            for (int i = ColorLineList.Count - 1; i >= 0 ; i--)
+	            {
+	                ColorLineList[i].Destroy();
+	            }
+	        }
+            if (enable)
+            {
+                SpeedExponent = FastExponent;
+                _maxLines = FastMaxLines;
+            }
+            else
+            {
+                SpeedExponent = NormalExponent;
+                _maxLines = NormalMaxLines;
+            }
+        }
 		private void CustomActivity()
 		{
-		    if (InputManager.Keyboard.KeyDown(Keys.Space))
-		    {
-		        _speedExponent = FastExponent;
-		        _maxLines = FastMaxLines;
-		    }
-		    else
-		    {
-		        _speedExponent = NormalExponent;
-		        _maxLines = NormalMaxLines;
-		    }
-
-            if (InputManager.Keyboard.KeyPushed(Keys.Space))
-            {
-                for (int i = ColorLineList.Count - 1; i >= 0; i--)
-                {
-                    ColorLineList[i].Destroy();
-                }
-            }
-
-            Debugger.Write(_speedExponent);
-
             CreateLines();
 
 		    for (int l = 0; l < ColorLineList.Count; l++)
@@ -98,7 +98,7 @@ namespace ShmupInvaders.Entities
 	    private void SetRandomVelocityAndHeight(ColorLine line)
 	    {
 	        var zeroToOne = FlatRedBallServices.Random.NextFloat(1.0f);
-	        line.YVelocity = -(float) Math.Pow(zeroToOne, _speedExponent)*Speed;
+	        line.YVelocity = -(float) Math.Pow(zeroToOne, SpeedExponent)*Speed;
 
 	        line.SpriteInstance.Height = Math.Abs(line.YVelocity*VelocityToHeight);
 	    }

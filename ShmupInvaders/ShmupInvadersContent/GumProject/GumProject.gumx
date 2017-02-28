@@ -19,6 +19,10 @@
     <Name>Score</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
+  <ComponentReference>
+    <Name>WaveIndicator</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
   <StandardElementReference>
     <Name>Circle</Name>
     <ElementType>Standard</ElementType>
