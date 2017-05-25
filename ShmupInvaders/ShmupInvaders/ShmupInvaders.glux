@@ -14,6 +14,14 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
+      <Events>
+        <EventResponseSave>
+          <EventName>AfterCurrentWaveSet</EventName>
+          <SourceVariable>CurrentWave</SourceVariable>
+          <BeforeOrAfter>After</BeforeOrAfter>
+          <DelegateType />
+        </EventResponseSave>
+      </Events>
       <CustomVariables>
         <CustomVariable>
           <Properties>
@@ -178,6 +186,18 @@
           <DefaultValue xsi:type="xsd:int">1</DefaultValue>
           <SourceObject>WaveIndicatorInstance</SourceObject>
           <SourceObjectProperty>WaveTextInstanceText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>ShmupInvaders.DataTypes.Waves</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>CurrentWave</Name>
+          <Type>ShmupInvaders.DataTypes.Waves</Type>
+          <DefaultValue xsi:type="xsd:string">0 in Waves.csv</DefaultValue>
+          <CreatesEvent>true</CreatesEvent>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
@@ -1190,6 +1210,14 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>Entity</SourceType>
+          <SourceClassType>Entities\ColorLine</SourceClassType>
+          <InstanceName>ColorLineInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
       <ReferencedFiles>
         <ReferencedFileSave>
@@ -1273,7 +1301,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
@@ -1877,6 +1905,20 @@
       <Name>Sounds/laser6_0.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/ShipType.csv</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <HasPublicProperty>true</HasPublicProperty>
+      <CreatesDictionary>true</CreatesDictionary>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/Waves.csv</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <HasPublicProperty>true</HasPublicProperty>
+      <CreatesDictionary>true</CreatesDictionary>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
   </GlobalFiles>

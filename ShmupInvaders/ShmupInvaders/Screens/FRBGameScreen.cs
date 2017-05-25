@@ -47,141 +47,24 @@ namespace ShmupInvaders.Screens
 		{
 		    _initialShipContainerPosition = ShipContainerInstance.Position;
 
-		    
 		    InitializeInput();
 
 	        LineSpawnerInstance.FastSpeed(true);
-
-
 
             MainGumScreenGlueInstance.FlyInAnimation.Play(this);
 	        _newWave = true;
             
             this.Call(() =>
             {
-                InitializeShips();
+                CurrentWave = GlobalContent.Waves[_wave.ToString()];
+
                 LineSpawnerInstance.FastSpeed(false);
                 _newWave = false;
                 WaveIndicatorInstance.Visible = false;
             }).After(4);
         }
 
-	    private void InitializeShips()
-	    {
-	        
-	        float width = ShipsPerRow*ColumnSpacing;
-	        float height = Rows*RowSpacing;
-
-            ShipContainerInstance.Position = _initialShipContainerPosition;
-	        ShipContainerInstance.Y -= _wave*this.StepDownPixels;
-	        
-
-            var currentY = 0;
-
-	        var color = WaveColors[_wave%WaveColors.Length];
-
-	        for (int row = 0; row < Rows; row++)
-	        {
-	            var currentX = 0;
-	            
-                for (int shipCount = 0; shipCount < ShipsPerRow; shipCount++)
-	            {
-	                var ship = ShipEntityFactory.CreateNew();
-
-                    if (row%4 == 0)
-	                {
-	                    if (color.Equals("Blue", StringComparison.Ordinal))
-	                    {
-	                        ship.CurrentState = ShipEntity.VariableState.BlueHorseshoe;
-	                    }
-                        else if (color.Equals("Orange", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.OrangeHorseshoe;
-                        }
-                        else if (color.Equals("Green", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.GreenHorseshoe;
-                        }
-                        else if (color.Equals("Purple", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.PurpleHorseshoe;
-                        }
-	                }
-	                else if (row%3 == 0)
-	                {
-                        if (color.Equals("Blue", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.BlueTea;
-                        }
-                        else if (color.Equals("Orange", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.OrangeTea;
-                        }
-                        else if (color.Equals("Green", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.GreenTea;
-                        }
-                        else if (color.Equals("Purple", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.PurpleTea;
-                        }
-	                }
-	                else if (row%2 == 0)
-	                {
-	                    if (color.Equals("Blue", StringComparison.Ordinal))
-	                    {
-	                        ship.CurrentState = ShipEntity.VariableState.BlueEye;
-	                    }
-	                    else if (color.Equals("Orange", StringComparison.Ordinal))
-	                    {
-	                        ship.CurrentState = ShipEntity.VariableState.OrangeEye;
-	                    }
-	                    else if (color.Equals("Green", StringComparison.Ordinal))
-	                    {
-	                        ship.CurrentState = ShipEntity.VariableState.GreenEye;
-	                    }
-	                    else if (color.Equals("Purple", StringComparison.Ordinal))
-	                    {
-	                        ship.CurrentState = ShipEntity.VariableState.PurpleEye;
-	                    }
-	                }
-	                else
-	                {
-                        if (color.Equals("Blue", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.BlueShip;
-                        }
-                        else if (color.Equals("Orange", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.OrangeShip;
-                        }
-                        else if (color.Equals("Green", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.GreenShip;
-                        }
-                        else if (color.Equals("Purple", StringComparison.Ordinal))
-                        {
-                            ship.CurrentState = ShipEntity.VariableState.PurpleShip;
-                        }
-                    }
-                    
-
-	                ship.AttachTo(ShipContainerInstance, false);
-
-	                ship.RelativeX = currentX - width/2.0f + ColumnSpacing/2.0f;
-	                ship.RelativeY = currentY - height/2.0f + RowSpacing/2.0f;
-	                currentX += ColumnSpacing;
-	            }
-
-	            currentY += RowSpacing;
-	        }
-
-	        ShipContainerInstance.XVelocity = StartingXVelocity;
-	        
-	        ShipContainerInstance.AxisAlignedRectangleInstance.Height = height;
-
-            RecalculateContainerWidth();
-        }
+	    
 
 	    private void InitializeInput()
 	    {
@@ -342,7 +225,7 @@ namespace ShmupInvaders.Screens
                 this.Call(() =>
                 {
                     ++_wave;
-                    InitializeShips();
+                    CurrentWave = GlobalContent.Waves[_wave.ToString()];
                     LineSpawnerInstance.FastSpeed(false);
                     WaveIndicatorInstance.Visible = false;
                     _newWave = false;

@@ -53,6 +53,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ships_void_0</Name>
     </None>
+    <None Include="GlobalContent\ShipType.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShipType</Name>
+    </None>
+    <None Include="GlobalContent\Waves.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Waves</Name>
+    </None>
     <None Include="GumProject\Components\Score.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Score</Name>
