@@ -69,6 +69,8 @@ namespace ShmupInvaders.Screens
                     ship.CurrentState = ShipEntity.VariableState.OrangeHorseshoe;
                     break;
             }
+
+            ship.HitsToKill = GlobalContent.ShipType[shipName].Hits;
         }
     }
 }

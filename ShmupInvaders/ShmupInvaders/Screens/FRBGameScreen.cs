@@ -217,20 +217,33 @@ namespace ShmupInvaders.Screens
 	            // All ships destroyed. Start new wave:
 	            LineSpawnerInstance.FastSpeed(true);
 
-	            
-	            WaveIndicatorInstance.Visible = true;
-                MainGumScreenGlueInstance.FlyInAnimation.Play(this);
 	            WaveDisplay = _wave + 1;
+                PlayerShipInstance.Velocity = Vector3.Zero;
+                PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
 
-                this.Call(() =>
+                PlayerShipInstance.Tween(nameof(PlayerShipInstance.X), 0f, 4.0f, InterpolationType.Linear, Easing.In);
+
+                if (GlobalContent.Waves.ContainsKey((_wave + 1).ToString()))
                 {
-                    ++_wave;
-                    CurrentWave = GlobalContent.Waves[_wave.ToString()];
-                    LineSpawnerInstance.FastSpeed(false);
-                    WaveIndicatorInstance.Visible = false;
-                    _newWave = false;
-                    WaveIndicatorInstance.ApplyState("WaveState", "FlyInStart");
-                }).After(4);
+                    this.Call(() =>
+                    {
+                        ++_wave;
+                        CurrentWave = GlobalContent.Waves[_wave.ToString()];
+                        LineSpawnerInstance.FastSpeed(false);
+                        WaveIndicatorInstance.Visible = false;
+                        _newWave = false;
+                        WaveIndicatorInstance.ApplyState("WaveState", "FlyInStart");
+                    }).After(4.0);
+                }
+                else
+                {
+                    // YOU WIN!
+                    WaveIndicatorInstance.TextInstanceText = "YOU ";
+                    WaveIndicatorInstance.WaveTextInstanceText = "WIN!!!";
+                }
+
+                WaveIndicatorInstance.Visible = true;
+                MainGumScreenGlueInstance.FlyInAnimation.Play(this);
             }
 	    }
 

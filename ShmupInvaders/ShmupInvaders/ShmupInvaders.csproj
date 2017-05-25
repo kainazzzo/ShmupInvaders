@@ -269,6 +269,7 @@
     <Compile Include="StateInterpolation\Cubic.cs" />
     <Compile Include="StateInterpolation\Elastic.cs" />
     <Compile Include="StateInterpolation\Exponential.cs" />
+    <Compile Include="StateInterpolation\Instant.cs" />
     <Compile Include="StateInterpolation\Linear.cs" />
     <Compile Include="StateInterpolation\Quadratic.cs" />
     <Compile Include="StateInterpolation\Quartic.cs" />

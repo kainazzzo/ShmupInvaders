@@ -111,6 +111,7 @@
       <Type>string</Type>
       <Name>TextInstance.Text</Name>
       <Value xsi:type="xsd:string">Wave</Value>
+      <ExposedAsName>TextInstanceText</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
