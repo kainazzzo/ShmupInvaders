@@ -253,3 +253,8 @@ paket-files/
 
 *.Generated.cs
 FlatRedBallXna4Template.sln.metaproj
+*.aeproperties
+*.csvSettings
+ShmupInvaders/ShmupInvaders/bin/
+ShmupInvaders/ShmupInvaders/obj/
+ShmupInvaders/ShmupInvadersContent/obj/

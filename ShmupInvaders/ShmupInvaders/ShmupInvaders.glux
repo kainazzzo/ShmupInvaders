@@ -173,27 +173,6 @@
               <ValueAsString>&lt;default&gt;</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>Score</Name>
-          <Type>string</Type>
-          <DefaultValue xsi:type="xsd:int">0</DefaultValue>
-          <SourceObject>ScoreInstance</SourceObject>
-          <SourceObjectProperty>TextValue</SourceObjectProperty>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>string</ValueAsString>
-            </PropertySave>
-            <PropertySave>
-              <Name>OverridingPropertyType</Name>
-              <ValueAsString>int</ValueAsString>
-            </PropertySave>
-            <PropertySave>
-              <Name>TypeConverter</Name>
-              <ValueAsString>&lt;default&gt;</ValueAsString>
-            </PropertySave>
-          </Properties>
           <Name>WaveDisplay</Name>
           <Type>string</Type>
           <DefaultValue xsi:type="xsd:int">1</DefaultValue>
@@ -319,15 +298,6 @@
           <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
           <SourceClassGenericType>Entities\PlayerBullet</SourceClassGenericType>
           <InstanceName>PlayerBulletList</InstanceName>
-          <AttachToContainer>true</AttachToContainer>
-          <GenerateTimedEmit>true</GenerateTimedEmit>
-          <IndependentOfCamera>true</IndependentOfCamera>
-        </NamedObjectSave>
-        <NamedObjectSave>
-          <SourceType>File</SourceType>
-          <SourceFile>GumProject/Screens/MainGameScreen.gusx</SourceFile>
-          <SourceName>ScoreInstance (ShmupInvaders.GumRuntimes.ScoreRuntime)</SourceName>
-          <InstanceName>ScoreInstance</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
@@ -1303,7 +1273,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>false</ValueAsBool>
+            <ValueAsBool>true</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
@@ -1334,11 +1304,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>30</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>3</ValueAsInt>
             </InstructionSave>
@@ -1357,11 +1322,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>30</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1384,11 +1344,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>30</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>3</ValueAsInt>
             </InstructionSave>
@@ -1407,11 +1362,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>30</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1434,11 +1384,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>20</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>2</ValueAsInt>
             </InstructionSave>
@@ -1457,11 +1402,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>20</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1484,11 +1424,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>20</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>2</ValueAsInt>
             </InstructionSave>
@@ -1507,11 +1442,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>20</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1534,11 +1464,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>10</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>1</ValueAsInt>
             </InstructionSave>
@@ -1557,11 +1482,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>10</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1584,11 +1504,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>10</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>1</ValueAsInt>
             </InstructionSave>
@@ -1607,11 +1522,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>10</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1634,11 +1544,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>40</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>4</ValueAsInt>
             </InstructionSave>
@@ -1657,11 +1562,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>40</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1684,11 +1584,6 @@
           <InstructionSaves>
             <InstructionSave>
               <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>40</ValueAsInt>
-            </InstructionSave>
-            <InstructionSave>
-              <Type>Int32</Type>
               <Member>HitsToKill</Member>
               <ValueAsInt>4</ValueAsInt>
             </InstructionSave>
@@ -1707,11 +1602,6 @@
         </StateSave>
         <StateSave>
           <InstructionSaves>
-            <InstructionSave>
-              <Type>Int32</Type>
-              <Member>PointValue</Member>
-              <ValueAsInt>40</ValueAsInt>
-            </InstructionSave>
             <InstructionSave>
               <Type>Int32</Type>
               <Member>HitsToKill</Member>
@@ -1761,17 +1651,6 @@
           </Properties>
           <Name>Z</Name>
           <Type>float</Type>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>int</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>PointValue</Name>
-          <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">30</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>

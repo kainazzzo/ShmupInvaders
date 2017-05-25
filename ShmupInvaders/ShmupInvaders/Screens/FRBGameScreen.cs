@@ -322,7 +322,7 @@ namespace ShmupInvaders.Screens
 	                        RecalculateContainerWidth();
 	                    }).After(.55);
                         
-	                    Score += shipEntity.PointValue;
+	                    //Score += shipEntity.PointValue;
 	                    break;
 	                }
 	            }

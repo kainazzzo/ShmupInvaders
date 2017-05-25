@@ -4,18 +4,6 @@
   <State>
     <Name>Default</Name>
     <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>ScoreInstance.X Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>ScoreInstance.X Units</Name>
-      <Value xsi:type="xsd:int">4</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>State</Type>
       <Name>WaveIndicatorInstance.State</Name>
       <Value xsi:type="xsd:string">Default</Value>
@@ -85,10 +73,6 @@
       </Variable>
     </State>
   </Category>
-  <Instance>
-    <Name>ScoreInstance</Name>
-    <BaseType>Score</BaseType>
-  </Instance>
   <Instance>
     <Name>WaveIndicatorInstance</Name>
     <BaseType>WaveIndicator</BaseType>

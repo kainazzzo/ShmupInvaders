@@ -330,6 +330,15 @@
             Base class for AnimationChainListSave and AnimationChainListSaveContent.
             </summary>
         </member>
+        <member name="F:FlatRedBall.Content.AnimationChain.AnimationChainListSaveBase`1.FileRelativeTextures">
+            <summary>
+            Whether files (usually image files) referenced by this object (and .achx) are
+            relative to the .achx itself. If false, then file references will be stored as absolute. 
+            If true, then file reference,s will be stored relative to the .achx itself. This value should
+            be true so that a .achx can be moved to a different file system or computer and still
+            have valid references.
+            </summary>
+        </member>
         <member name="T:FlatRedBall.Content.AnimationChain.AnimationChainSaveBase`1">
             <summary>
             The base class for AnimationChainSave and AnimationChainSaveContent.
@@ -370,21 +379,25 @@
         <member name="F:FlatRedBall.Content.AnimationChain.AnimationFrameSaveBase.LeftCoordinate">
             <summary>
             The left coordinate in texture coordinates of the AnimationFrame.  Default is 0.
+            This may be in UV coordinates or pixel coordinates.
             </summary>
         </member>
         <member name="F:FlatRedBall.Content.AnimationChain.AnimationFrameSaveBase.RightCoordinate">
             <summary>
             The right coordinate in texture coordinates of the AnimationFrame.  Default is 1.
+            This may be in UV coordinates or pixel coordinates.
             </summary>
         </member>
         <member name="F:FlatRedBall.Content.AnimationChain.AnimationFrameSaveBase.TopCoordinate">
             <summary>
             The top coordinate in texture coordinates of the AnimationFrame.  Default is 0.
+            This may be in UV coordinates or pixel coordinates.
             </summary>
         </member>
         <member name="F:FlatRedBall.Content.AnimationChain.AnimationFrameSaveBase.BottomCoordinate">
             <summary>
             The bottom coordinate in texture coordinates of the AnimationFrame.  Default is 1.
+            This may be in UV coordinates or pixel coordinates.
             </summary>
         </member>
         <member name="F:FlatRedBall.Content.AnimationChain.AnimationFrameSaveBase.RelativeX">
@@ -804,22 +817,30 @@
         </member>
         <member name="F:FlatRedBall.Graphics.Animation.AnimationFrame.LeftCoordinate">
             <summary>
-            The left coordinate in texture coordinates of the AnimationFrame.  Default is 0.
+            The left coordinate in texture coordinates of the AnimationFrame.  Default is 0. 
+            This value is in texture coordinates, not pixels. A value of 1 represents the right-side
+            of the texture.
             </summary>
         </member>
         <member name="F:FlatRedBall.Graphics.Animation.AnimationFrame.RightCoordinate">
             <summary>
             The right coordinate in texture coordinates of the AnimationFrame.  Default is 1.
+            This value is in texture coordinates, not pixels. A value of 1 represents the right-side
+            of the texture.
             </summary>
         </member>
         <member name="F:FlatRedBall.Graphics.Animation.AnimationFrame.TopCoordinate">
             <summary>
             The top coordinate in texture coordinates of the AnimationFrame.  Default is 0.
+            This value is in texture coordinates, not pixels. A value of 1 represents the bottom
+            of the texture;
             </summary>
         </member>
         <member name="F:FlatRedBall.Graphics.Animation.AnimationFrame.BottomCoordinate">
             <summary>
             The bottom coordinate in texture coordinates of the AnimationFrame.  Default is 1.
+            This value is in texture coordinates, not pixels. A value of 1 represents the bottom
+            of the texture;
             </summary>
         </member>
         <member name="F:FlatRedBall.Graphics.Animation.AnimationFrame.RelativeX">
@@ -1206,16 +1227,37 @@
             SecondsLasting property.
             </summary>
         </member>
+        <member name="P:FlatRedBall.Graphics.Particle.Emitter.BoundedEmission">
+            <summary>
+            If true, restricts this emitter to only emit when its EmissionBoundary is within the camera's view. This defaults to false, which means the emitter
+            will ignore camera bounds when attempting to emit.
+            </summary>
+            <remarks>
+            BoundedEmission can be used to improve the performance of your game, by reducing the number of off-screen particles which the engine has to manage.
+            </remarks>
+            <seealso cref="P:FlatRedBall.Graphics.Particle.Emitter.EmissionBoundary"/>
+        </member>
+        <member name="P:FlatRedBall.Graphics.Particle.Emitter.AreaEmission">
+            <summary>
+            Sets the area which defines where new particles can appear. 
+            By default this is set to Point, which means
+            emitted particles will appear at the Emitter's Position.
+            </summary>
+            <remarks>
+            If the AreaEmission is set to Rectangle or Cube, then the ScaleX, ScaleY, and ScaleZ values are used.
+            </remarks>
+        </member>
         <member name="P:FlatRedBall.Graphics.Particle.Emitter.SecondsLasting">
             <summary>
             Specifies the number of seconds that particles will remain on the screen and in memory.  This is only considered
             if the RemovalEvent is set to RemovalEventType.TIMED;
             </summary>
         </member>
-        <member name="F:FlatRedBall.Graphics.Particle.Emitter.mRemovalEvent">
+        <member name="P:FlatRedBall.Graphics.Particle.Emitter.RemovalEvent">
             <summary>
-            This is used only in the ParticleEditor.  
+            Specifies the type of logic to perform for removing the particle.
             </summary>
+            <seealso cref="P:FlatRedBall.Graphics.Particle.Emitter.SecondsLasting"/>
         </member>
         <member name="M:FlatRedBall.Graphics.Particle.Emitter.Emit(FlatRedBall.SpriteList)">
             <summary>
@@ -1237,6 +1279,14 @@
             </remarks>
             <param name="spriteList">The list of Sprites (which can be null) to add all Sprites created
             by this call.</param>
+        </member>
+        <member name="M:FlatRedBall.Graphics.Particle.Emitter.TimedEmit(FlatRedBall.SpriteList)">
+            <summary>
+            Checks if the emitter is ready to emit, and if so, performs an emit. This method will only emit if 
+            TimedEmission is set to true. Emitters which have TimedEmission set to true will typically have TimedEmit
+            called every frame.
+            </summary>
+            <param name="spriteList"></param>
         </member>
         <member name="T:FlatRedBall.Graphics.Particle.EmitterList">
             <summary>
@@ -1628,6 +1678,19 @@
             cannot be sorted.
             </remarks>
         </member>
+        <member name="P:FlatRedBall.Graphics.Layer.RelativeToCamera">
+            <summary>
+            Controls whether all objects on this layer are drawn relative to the camera. If this value is true, then objects
+            with a position of 0,0 will be positioned at the center of the camera. This value is false by default, which means
+            objects on this layer will be positioned relative to world coordinates.
+            </summary>
+            <remarks>
+            Setting this value to true is an alternative to attaching all objects to the camera. Using this value has a number of
+            benefits:
+             - It removes the overhead of attachment if dealing with a large number of objects
+             - It removes "jittering" which can occur when attaching to a rotating camera
+            </remarks>
+        </member>
         <member name="P:FlatRedBall.Graphics.Layer.Sprites">
             <summary>
             The Sprites referenced by and drawn on the Layer.
@@ -1678,7 +1741,7 @@
             it.
             </summary>
             <remarks>
-            If a Layer uses a RenderTarge, it will clear the render target if:
+            If a Layer uses a RenderTarget, it will clear the render target if:
             - It is the UnderAll layer
             - It is the first Layer on a camera
             - It uses a different RenderTarget than the previous Layer.
@@ -3341,6 +3404,16 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.Bloom">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.Blur">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
         <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.defaultFont">
              <summary>
                Looks up a localized string similar to info face=&quot;Arial&quot; size=16 bold=0 italic=0 charset=&quot;&quot; unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
@@ -3351,6 +3424,36 @@
             char id=33   x=227   y=74    width=1     height=10    xoffset=1     yoffset=3     xadvance=3     page=0  chnl=0 
             char id=34   x=54    y=97    width=3     h [rest of string was truncated]&quot;;.
              </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.defaultText">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.DirectionalBlur">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.FlatRedBallModelShader">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.FlatRedBallShader">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.Pixellate">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Resources_Xna_4.x86.Resources.RadialBlur">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
         </member>
         <member name="T:FlatRedBall.Utilities.DebuggingFunctions">
             <summary>
@@ -4298,6 +4401,23 @@
         <member name="T:FlatRedBall.AI.Pathfinding.TileNodeNetwork">
             <summary>
             A node network which is designed specifically for tile-based pathfinding.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.AI.Pathfinding.TileNodeNetwork.#ctor(System.Single,System.Single,System.Single,System.Int32,System.Int32,FlatRedBall.AI.Pathfinding.DirectionalType)">
+            <summary>
+            Creates a new, empty TileNodeNetwork matching the arguments.
+            </summary>
+            <param name="xOrigin">The X position of the left-most nodes. This, along with the ySeed, define the bottom-left of the node network.</param>
+            <param name="yOrigin">The y position of the bottom-most nodes. This, along with xSeed, define the bottom-left of the node network.</param>
+            <param name="gridSpacing">The X and Y distance between each node.</param>
+            <param name="numberOfXTiles">The number of nodes vertically.</param>
+            <param name="numberOfYTiles">The number of nodes horizontally.</param>
+            <param name="directionalType">Whether to create a Four-way or Eight-way node network. Eight creates diagonal links, enabling diagonal movement when following the node network.</param>
+        </member>
+        <member name="M:FlatRedBall.AI.Pathfinding.TileNodeNetwork.FillCompletely">
+            <summary>
+            Populates every possible space on the grid with a node and creates links betwen adjacent links. Diagonal links are created only if
+            the DirectionalType is set to DirectionalType.Eight.
             </summary>
         </member>
         <member name="T:FlatRedBall.Attributes.ExternalInstance">
@@ -5565,6 +5685,13 @@
             <param name="button">The button to check.</param>
             <returns>true if the button is pressed, otherwise false</returns>
         </member>
+        <member name="M:FlatRedBall.Input.Xbox360GamePad.GetButton(FlatRedBall.Input.Xbox360GamePad.Button)">
+            <summary>
+            Returns an Xbox360ButtonReference from the argument Button.
+            </summary>
+            <param name="button">The button, such as Button.A</param>
+            <returns>The reference, which can then be used to check for input.</returns>
+        </member>
         <member name="M:FlatRedBall.Input.Xbox360GamePad.Clear">
             <summary>
             Clears the input on this controller for this frame. This includes
@@ -5648,6 +5775,26 @@
             var jumpInput = new MultiplePressableInputs();
             jumpInput.Inputs.Add(InputManager.Keyboard.GetKey(Keys.Space));
             jumpInput.Inputs.Add(InputManager.Keyboard.GetKey(Keys.Enter));
+            </example>
+        </member>
+        <member name="T:FlatRedBall.Input.Multiple2DInputs">
+            <summary>
+            Provides a single I2DInput implementation which can read from multiple I2DInputs at once.
+            </summary>
+            <remarks>
+            This is useful for games which want to read from multiple devices, such as letting all controllers
+            control one character, or letting keyboard and gamepad control a character at the same time.
+            </remarks>
+        </member>
+        <member name="P:FlatRedBall.Input.Multiple2DInputs.Inputs">
+            <summary>
+            Contains the list of inputs to read from. Any number of inputs can be added to this using the Add method.
+            </summary>
+            <example>
+            // Assuming that keyboard2DInput and gamepad2DInput exist:
+            var multipleInputs = new Multiple2DInputs();
+            multipleInputs.Inputs.Add(keyboard2DInput);
+            multipleInputs.Inputs.Add(gamepad2DInput);
             </example>
         </member>
         <member name="T:FlatRedBall.Input.DirectionalKeyGroup">
@@ -5782,7 +5929,7 @@
         </member>
         <member name="P:FlatRedBall.Instructions.Instruction.TimeToExecute">
             <summary>
-            The system time to execute the instruction at.
+            The game time to check for execution.
             </summary>
             <remarks>
             The TimeManager.CurrentTime property is used for comparisons.
@@ -5790,9 +5937,14 @@
         </member>
         <member name="P:FlatRedBall.Instructions.Instruction.CycleTime">
             <summary>
-            The amount of time to add to the instruction for cycled execution.  Default of 0 
-            instructs the executing logic to not cycle the Instruction.
+            The amount of time between executions for an instruction that cycles. If this value is 0, the
+            instruction does not cycle. CycleTime is only considered after an instructions first execution.
+            This means that an instruction may be scheuduled to execute in 10 seconds, then after its first execution
+            it will repeat every second thereafter.
             </summary>
+            <example>
+            Setting a CycleTime of 1 means that the instruction will execute ever 1 second after its first execution.
+            </example>
         </member>
         <member name="P:FlatRedBall.Instructions.Instruction.Target">
             <summary>
@@ -5875,6 +6027,19 @@
             Whether the (automatically called) Update method executes instructions.  Default true.
             </summary>
         </member>
+        <member name="M:FlatRedBall.Instructions.InstructionManager.Add(FlatRedBall.Instructions.Instruction)">
+            <summary>
+            Adds the argument instruction to the InstructionManager, to be executed when its time is reached.
+            </summary>
+            <param name="instruction">The instruction to remove</param>
+        </member>
+        <member name="M:FlatRedBall.Instructions.InstructionManager.Remove(FlatRedBall.Instructions.Instruction)">
+            <summary>
+            Removes the argument instruction from the internal list. A removed instruction will not
+            automatically be executed.
+            </summary>
+            <param name="instruction">The instruction to remove.</param>
+        </member>
         <member name="M:FlatRedBall.Instructions.InstructionManager.UncastedSetMember(System.Object,System.String,System.Object)">
             <summary>
             Sets a member on an uncasted object.  If the type of objectToSetOn is known, use
@@ -5886,7 +6051,8 @@
         </member>
         <member name="M:FlatRedBall.Instructions.InstructionManager.Update(System.Double)">
             <summary>
-            Executes contained instructions.
+            Performs every-frame updates which include moving queued instructions to the main instruction list and
+            executing instructions according to their TimeToExecute.
             </summary>
             <param name="currentTime">The number of seconds since the start of application execution.</param>
         </member>
@@ -7271,6 +7437,14 @@
             <param name="point1">The first Point.</param>
             <param name="point2">The second Point.</param>
         </member>
+        <member name="M:FlatRedBall.Math.Geometry.Segment.DistanceTo(FlatRedBall.Math.Geometry.Polygon)">
+            <summary>
+            Returns the distance from this segment to the argument polygon's edges. If the segment is "inside" the polygon, it will still return the distance to the edge.
+            In other words, the polygon is not considered "filled in" when performing these checks.
+            </summary>
+            <param name="polygon">The polygon to check against.</param>
+            <returns>The distance from this segment to the polygon, or float.MaxValue if the polygon does not have any vertices.</returns>
+        </member>
         <member name="M:FlatRedBall.Math.Geometry.Segment.DistanceTo(FlatRedBall.Math.Geometry.Point,Microsoft.Xna.Framework.Vector3@)">
             <summary>
             Returns the distance to the argument point as well as
@@ -7853,32 +8027,32 @@
         </member>
         <member name="P:FlatRedBall.Math.IPositionable.XVelocity">
             <summary>
-            Gets and sets the absolute X Velocity.  Meausred in units per second.
+            Gets and sets the absolute X Velocity.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.Math.IPositionable.YVelocity">
             <summary>
-            Gets and sets the absolute Y Velocity.  Meausred in units per second.
+            Gets and sets the absolute Y Velocity.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.Math.IPositionable.ZVelocity">
             <summary>
-            Gets and sets the absolute Z Velocity.  Meausred in units per second.
+            Gets and sets the absolute Z Velocity.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.Math.IPositionable.XAcceleration">
             <summary>
-            Gets and sets the absolute X Acceleration.  Meausred in units per second.
+            Gets and sets the absolute X Acceleration.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.Math.IPositionable.YAcceleration">
             <summary>
-            Gets and sets the absolute Y Acceleration.  Meausred in units per second.
+            Gets and sets the absolute Y Acceleration.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.Math.IPositionable.ZAcceleration">
             <summary>
-            Gets and sets the absolute Z Acceleration.  Meausred in units per second.
+            Gets and sets the absolute Z Acceleration.  Measured in units per second.
             </summary>
         </member>
         <member name="T:FlatRedBall.Math.IRotatable">
@@ -8027,6 +8201,21 @@
             <param name="basePoint">Point to rotate around.</param>
             <param name="pointToRotate">Point to rotate (changes position).</param>
             <param name="radiansToChangeBy">Radians to rotate by.</param>
+        </member>
+        <member name="M:FlatRedBall.Math.MathFunctions.RoundFloat(System.Single,System.Single)">
+            <summary>
+            Returns a value which has been rounded to the nearest mulitple of the mulipleOf value.
+            </summary>
+            <param name="valueToRound">The value to round, such as the position of an object.</param>
+            <param name="multipleOf">The multiple of value, such as the size of a tile.</param>
+            <returns>The rounded value.</returns>
+        </member>
+        <member name="M:FlatRedBall.Math.MathFunctions.RoundToInt(System.Single)">
+            <summary>
+            Rounds the argument floatToRound to an integer.
+            </summary>
+            <param name="floatToRound">The float value.</param>
+            <returns>The integer of the rounded.</returns>
         </member>
         <member name="M:FlatRedBall.Math.MathFunctions.NormalizeAngle(System.Single)">
             <summary>
@@ -8455,6 +8644,13 @@
             The objects that are attached to this instance.
             </summary>
         </member>
+        <member name="P:FlatRedBall.PositionedObject.IgnoreParentPosition">
+            <summary>
+            Controls whether this instance ignores parent positioning. This is false by default, which means Relative values are used
+            to determine this instance's absolute positions when it has a parent. If this is set to true, then the positioning of this
+            object behaves as if it was not attached. Rotation and other properties which may be affected by a Parent still apply.
+            </summary>
+        </member>
         <member name="F:FlatRedBall.PositionedObject.mLastDependencyUpdate">
             <summary>
             The value that was last used when calling UpdateDependencies.
@@ -8716,32 +8912,32 @@
         </member>
         <member name="P:FlatRedBall.PositionedObject.XVelocity">
             <summary>
-            Gets and sets the absolute X Velocity.  Meausred in units per second.
+            Gets and sets the absolute X Velocity.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.PositionedObject.YVelocity">
             <summary>
-            Gets and sets the absolute Y Velocity.  Meausred in units per second.
+            Gets and sets the absolute Y Velocity.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.PositionedObject.ZVelocity">
             <summary>
-            Gets and sets the absolute Z Velocity.  Meausred in units per second.
+            Gets and sets the absolute Z Velocity.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.PositionedObject.XAcceleration">
             <summary>
-            Gets and sets the absolute X Acceleration.  Meausred in units per second.
+            Gets and sets the absolute X Acceleration.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.PositionedObject.YAcceleration">
             <summary>
-            Gets and sets the absolute Y Acceleration.  Meausred in units per second.
+            Gets and sets the absolute Y Acceleration.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.PositionedObject.ZAcceleration">
             <summary>
-            Gets and sets the absolute Z Acceleration.  Meausred in units per second.
+            Gets and sets the absolute Z Acceleration.  Measured in units per second.
             </summary>
         </member>
         <member name="P:FlatRedBall.PositionedObject.KeepTrackOfReal">
@@ -9014,6 +9210,13 @@
             Sets the absolute rotation values according to the object's RotationMatrix.
             </summary>
         </member>
+        <member name="P:FlatRedBall.Screens.Screen.RestartVariableValues">
+            <summary>
+            Stores the names and values of variables which should be preserved on the next
+            restart. These values are recorded prior to the screen being destroyed, then applied
+            after the construction of the next screen.
+            </summary>
+        </member>
         <member name="P:FlatRedBall.Screens.Screen.Instructions">
             <summary>
             The list of instructions owned 
@@ -9081,7 +9284,8 @@
         </member>
         <member name="M:FlatRedBall.Screens.Screen.MoveToScreen(System.String)">
             <summary>Tells the screen that we are done and wish to move to the
-            supplied screen</summary>
+            the screen with the matching (fully qualified) name.
+            </summary>
             <param>Fully Qualified Type of the screen to move to</param>
         </member>
         <member name="M:FlatRedBall.Screens.Screen.MoveToState(System.Int32)">
@@ -9130,6 +9334,16 @@
             Gets the current animationChain - retrieved through the CurrentChainIndex property.
             </summary>
         </member>
+        <member name="P:FlatRedBall.Sprite.ScaleX">
+            <summary>
+            The distance from the center of the Sprite to its edge, which is equal to Width / 2.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Sprite.ScaleY">
+            <summary>
+            The distance from the center of the Sprite to its edge, which is equal to Height / 2. 
+            </summary>
+        </member>
         <member name="P:FlatRedBall.Sprite.RelativeLeft">
             <summary>
             Returns the left edge of the Sprite relative its Parent.  This value uses RelativeX and Width/2 to calculate this value.
@@ -9152,12 +9366,14 @@
         </member>
         <member name="P:FlatRedBall.Sprite.Width">
             <summary>
-            The Sprite's Width in absolute world coordinates.
+            The Sprite's Width in absolute world coordinates. This value may be set according
+            to the currently displayed texture and texture coordinates if TextureScale is greater than 0.
             </summary>
         </member>
         <member name="P:FlatRedBall.Sprite.Height">
             <summary>
-            The Sprite's Height in absolute world coordinates.
+            The Sprite's Height in absolute world coordinates. This value may be set according
+            to the currently displayed texture and texture coordinates if TextureScale is greater than 0.
             </summary>
         </member>
         <member name="P:FlatRedBall.Sprite.TimeCreated">
@@ -9286,6 +9502,15 @@
         <member name="P:FlatRedBall.Sprite.Texture">
             <summary>
             The texture to be displayed by the Sprite.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Sprite.TextureScale">
+            <summary>
+            The relationship between the displayed portion of the Sprite's texture and 
+            its Width/Height. If this value is less than or equal to 0, then Width and Height
+            values are not set according to the displayed portion of the Sprite's texture. Otherwise,
+            the displayed portion of the texture are multiplied by this value to determine the Sprite's
+            Width and Height.
             </summary>
         </member>
         <member name="P:FlatRedBall.Sprite.FlipHorizontal">
@@ -9464,7 +9689,14 @@
         </member>
         <member name="P:FlatRedBall.SpriteManager.TopLayer">
             <summary>
-            A layer which is drawn on top of all other layers. This is drawn on every camera, obeying the camera's DestinationRectangle.
+            A layer which is drawn on top of all other layers. 
+            This is drawn on every camera, obeying the camera's DestinationRectangle.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.SpriteManager.UnderAllDrawnLayer">
+            <summary>
+            A layer which is drawn underneath all other layers, and under unlayered objects. 
+            This is drawn on every camera, obeying the camera's DestinationRectangle.
             </summary>
         </member>
         <member name="P:FlatRedBall.SpriteManager.OrderedSortType">
@@ -9541,6 +9773,13 @@
             <summary>
             Updates the dependencies of all contained automatically updated Sprites, Cameras, and SpriteFrames.
             </summary>
+        </member>
+        <member name="M:FlatRedBall.SpriteManager.CreateParticleSprite(Microsoft.Xna.Framework.Graphics.Texture2D)">
+            <summary>
+            Returns a new Sprite instance from the particle pool, but does not add it to the SpriteManager.
+            </summary>
+            <param name="texture">The texture to assign on the sprite.</param>
+            <returns>The new sprite.</returns>
         </member>
         <member name="T:FlatRedBall.TimeMeasurementUnit">
             <summary>
