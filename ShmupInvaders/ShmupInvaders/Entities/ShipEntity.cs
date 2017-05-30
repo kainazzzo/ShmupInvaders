@@ -16,6 +16,7 @@ using FlatRedBall.Math.Splines;
 using BitmapFont = FlatRedBall.Graphics.BitmapFont;
 using Cursor = FlatRedBall.Gui.Cursor;
 using GuiManager = FlatRedBall.Gui.GuiManager;
+using ShmupInvaders.Factories;
 
 #if FRB_XNA || SILVERLIGHT
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -30,15 +31,21 @@ namespace ShmupInvaders.Entities
 	public partial class ShipEntity
 	{
 	    public int TotalHits { get; set; }
+        public double NextBullet { get; set; }
 
-	    /// <summary>
+        public bool BulletCharged(double pauseAdjustedCurrentTime)
+        {
+            return NextBullet <= pauseAdjustedCurrentTime;
+        }
+
+        /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
         /// added to managers will not have this method called.
         /// </summary>
-		private void CustomInitialize()
+        private void CustomInitialize()
         {
-            TotalHits = 0;
+
         }
 
 		private void CustomActivity()
@@ -57,5 +64,19 @@ namespace ShmupInvaders.Entities
 
 
         }
-	}
+
+        public void FireBullet(double pauseAdjustedCurrentTime)
+        {
+            NextBullet = pauseAdjustedCurrentTime + FlatRedBallServices.Random.NextDouble() *
+                (ShipType.BulletFrequencyMax - ShipType.BulletFrequencyMin) + ShipType.BulletFrequencyMin;
+
+            var bullet = EnemyBulletFactory.CreateNew();
+
+            bullet.Position = this.Position;
+            bullet.Position.Y -= 10f;
+            bullet.YVelocity = ShipType.BulletSpeed;
+
+
+        }
+    }
 }

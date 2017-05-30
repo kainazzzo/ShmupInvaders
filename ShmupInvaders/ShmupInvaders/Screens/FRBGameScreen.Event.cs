@@ -1,6 +1,7 @@
 using System;
 using ShmupInvaders.Entities;
 using ShmupInvaders.Factories;
+using FlatRedBall;
 
 namespace ShmupInvaders.Screens
 {
@@ -52,7 +53,7 @@ namespace ShmupInvaders.Screens
             RecalculateContainerWidth();
         }
 
-        private static void SetShipState(string shipName, ShipEntity ship)
+        private void SetShipState(string shipName, ShipEntity ship)
         {
             switch (shipName)
             {
@@ -70,7 +71,12 @@ namespace ShmupInvaders.Screens
                     break;
             }
 
-            ship.HitsToKill = GlobalContent.ShipType[shipName].Hits;
+            var shipType = GlobalContent.ShipType[shipName];
+
+            ship.ShipType = shipType;
+            ship.HitsToKill = shipType.Hits;
+            ship.NextBullet = PauseAdjustedCurrentTime + FlatRedBallServices.Random.NextDouble() *
+                (shipType.BulletFrequencyMax - shipType.BulletFrequencyMin) + shipType.BulletFrequencyMin;
         }
     }
 }

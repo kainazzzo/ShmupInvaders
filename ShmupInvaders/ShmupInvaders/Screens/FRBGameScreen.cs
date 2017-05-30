@@ -82,25 +82,39 @@ namespace ShmupInvaders.Screens
 
 	                var currentXVelocity = ShipContainerInstance.XVelocity;
 	                ShipContainerInstance.XVelocity = 0;
-                    
-	                this.ShipContainerInstance.Tween("Y")
-	                    .To(this.ShipContainerInstance.Y - StepDownPixels)
-	                    .During(.5)
-	                    .Using(InterpolationType.Bounce, Easing.Out).Ended += () =>
-	                    {
-	                        ShipContainerInstance.XVelocity = currentXVelocity*StepDownSpeedMultiplier;
-	                    };
 
-	                //this.Call(ShakeScreen).After(.2);
+                    // Using TweenerHolder instead of PositionedObjectTweenerExtensionMethods.Tween, 
+                    // because the latter function returns a TweenerHolder instead of a tweener, and I need the "Ended" event
+                    new TweenerHolder()
+                    {
+                        Caller = ShipContainerInstance
+                    }.Tween("Y", this.ShipContainerInstance.Y - StepDownPixels, .5f, InterpolationType.Bounce, Easing.Out).Ended += () =>
+                    {
+                        ShipContainerInstance.XVelocity = currentXVelocity * StepDownSpeedMultiplier;
+                    };
+
+                    //this.Call(ShakeScreen).After(.2);
 
 
-	            }
+                }
 
 	            HandleInput();
 	            HandleCollisions();
+                FireEnemyBullets();
 	            DestroyBullets();
 	        }
 		}
+
+        private void FireEnemyBullets()
+        {
+            foreach (var ship in ShipEntityList)
+            {
+                if (ship.BulletCharged(PauseAdjustedCurrentTime))
+                {
+                    ship.FireBullet(PauseAdjustedCurrentTime);
+                }
+            }
+        }
 
         private void ShakeScreen()
         {
@@ -167,57 +181,86 @@ namespace ShmupInvaders.Screens
 	    }
 
 	    private void HandleBulletCollisions()
-	    {
-	        foreach (var playerBullet in PlayerBulletList)
-	        {
-	            if (!playerBullet.CollideAgainst(ShipContainerInstance)) continue;
+        {
+            HandlePlayerBulletCollision();
+            HandleEnemyBulletCollision();
+        }
 
-	            foreach (var shipEntity in ShipEntityList)
-	            {
-	                if (playerBullet.CollideAgainst(shipEntity) && shipEntity.SpriteInstance.CurrentChainName != "Explosion")
-	                {
+        private void HandleEnemyBulletCollision()
+        {
+            foreach (var enemyBullet in EnemyBulletList)
+            {
+                if (enemyBullet.CollideAgainst(PlayerShipInstance))
+                {
+                    // You Lose!
+                    WaveIndicatorInstance.TextInstanceText = "YOU ";
+                    WaveIndicatorInstance.WaveTextInstanceText = "LOSE!!!";
+                    WaveIndicatorInstance.Visible = true;
+                    MainGumScreenGlueInstance.FlyInAnimation.Play(this);
+
+                    enemyBullet.Destroy();
+                }
+
+                else if (enemyBullet.Y < RightBoundary.Bottom)
+                {
+                    enemyBullet.Destroy();
+                }
+            }
+        }
+
+        private void HandlePlayerBulletCollision()
+        {
+            foreach (var playerBullet in PlayerBulletList)
+            {
+                if (!playerBullet.CollideAgainst(ShipContainerInstance)) continue;
+
+                foreach (var shipEntity in ShipEntityList)
+                {
+                    if (playerBullet.CollideAgainst(shipEntity) && shipEntity.SpriteInstance.CurrentChainName != "Explosion")
+                    {
                         playerBullet.Destroy();
 
                         FlashEnemyShip(shipEntity);
 
 
-	                    if (shipEntity.TotalHits++ < shipEntity.HitsToKill - 1)
-	                    {
-	                        this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
-	                            .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
-                            
-                            shipEntity.DamageInstance.Play();
-	                        continue;
-	                    }
-	                    else
-	                    {
-	                        shipEntity.SpriteInstance.ColorOperation = ColorOperation.None;
-	                    }
+                        if (shipEntity.TotalHits++ < shipEntity.HitsToKill - 1)
+                        {
+                            this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
+                                .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
 
-	                    shipEntity.SpriteInstance.CurrentChainName = "Explosion";
-	                    shipEntity.SpriteInstance.TextureScale = .6f;
+                            shipEntity.DamageInstance.Play();
+                            continue;
+                        }
+                        else
+                        {
+                            shipEntity.SpriteInstance.ColorOperation = ColorOperation.None;
+                        }
+
+                        shipEntity.SpriteInstance.CurrentChainName = "Explosion";
+                        shipEntity.SpriteInstance.TextureScale = .6f;
+                        shipEntity.NextBullet = PauseAdjustedCurrentTime + 1.0;
                         shipEntity.Detach();
                         shipEntity.ExplosionInstance.Play();
 
-	                    this.Call(() =>
-	                    {
-	                        shipEntity.Destroy();
-	                        RecalculateContainerWidth();
-	                    }).After(.55);
-                        
-	                    //Score += shipEntity.PointValue;
-	                    break;
-	                }
-	            }
-	        }
+                        this.Call(() =>
+                        {
+                            shipEntity.Destroy();
+                            RecalculateContainerWidth();
+                        }).After(.55);
 
-	        if (ShipEntityList.Count == 0 && !_newWave)
-	        {
-	            _newWave = true;
-	            // All ships destroyed. Start new wave:
-	            LineSpawnerInstance.FastSpeed(true);
+                        //Score += shipEntity.PointValue;
+                        break;
+                    }
+                }
+            }
 
-	            WaveDisplay = _wave + 1;
+            if (ShipEntityList.Count == 0 && !_newWave)
+            {
+                _newWave = true;
+                // All ships destroyed. Start new wave:
+                LineSpawnerInstance.FastSpeed(true);
+
+                WaveDisplay = _wave + 1;
                 PlayerShipInstance.Velocity = Vector3.Zero;
                 PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
 
@@ -245,9 +288,9 @@ namespace ShmupInvaders.Screens
                 WaveIndicatorInstance.Visible = true;
                 MainGumScreenGlueInstance.FlyInAnimation.Play(this);
             }
-	    }
+        }
 
-	    private static void FlashEnemyShip(ShipEntity shipEntity)
+        private static void FlashEnemyShip(ShipEntity shipEntity)
 	    {
 	        shipEntity.SpriteInstance.ColorOperation = ColorOperation.Add;
 
