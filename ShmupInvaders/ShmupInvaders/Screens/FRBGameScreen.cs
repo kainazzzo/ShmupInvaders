@@ -45,6 +45,7 @@ namespace ShmupInvaders.Screens
 
 	    void CustomInitialize()
 		{
+            GameOverText.Visible = false;
 		    _initialShipContainerPosition = ShipContainerInstance.Position;
 
 		    InitializeInput();
@@ -145,9 +146,50 @@ namespace ShmupInvaders.Screens
 	        _gameOver = true;
 	        PlayerShipInstance.XVelocity = 0;
 	        ShipContainerInstance.XVelocity = 0;
-	    }
 
-	    private void DestroyBullets()
+            var text = GameOverText.Text;
+
+            GameOverText.Visible = true;
+            GameOverText.Text = "";
+
+            var step = TextTimeStep;
+
+            for(var it = 1; it <= text.Length; ++it)
+            {
+                var newText = text.Substring(0, it);
+
+                this.Call(() =>
+                {
+                    GameOverText.Text = newText;
+                }).After(step * it);
+            }
+        }
+
+        private void YouWin()
+        {
+            _gameOver = true;
+            PlayerShipInstance.XVelocity = 0;
+            ShipContainerInstance.XVelocity = 0;
+
+            var text = WinScreenText.Text;
+
+            WinScreenText.Visible = true;
+            WinScreenText.Text = "";
+
+            var step = TextTimeStep;
+
+            for (var it = 1; it <= text.Length; ++it)
+            {
+                var newText = text.Substring(0, it);
+
+                this.Call(() =>
+                {
+                    WinScreenText.Text = newText;
+                }).After(step * it);
+            }
+        }
+
+        private void DestroyBullets()
 	    {
 	        foreach (var playerBullet in PlayerBulletList)
 	        {
@@ -171,13 +213,15 @@ namespace ShmupInvaders.Screens
 	        PlayerShipInstance.CollideAgainstMove(LeftBoundary, 0, 1);
 	        PlayerShipInstance.CollideAgainstMove(RightBoundary, 0, 1);
 
-	        foreach (var enemy in ShipEntityList)
-	        {
-	            if (enemy.CollideAgainst(PlayerShipInstance))
-	            {
-	                GameOver();
-	            }
-	        }
+            if (ShipContainerInstance.CollideAgainst(PlayerShipInstance))
+            {
+                GameOver();
+            }
+
+            if (ShipContainerInstance.AxisAlignedRectangleInstance.Bottom < LeftBoundary.Bottom)
+            {
+                GameOver();
+            }
 	    }
 
 	    private void HandleBulletCollisions()
@@ -193,10 +237,7 @@ namespace ShmupInvaders.Screens
                 if (enemyBullet.CollideAgainst(PlayerShipInstance))
                 {
                     // You Lose!
-                    WaveIndicatorInstance.TextInstanceText = "YOU ";
-                    WaveIndicatorInstance.WaveTextInstanceText = "LOSE!!!";
-                    WaveIndicatorInstance.Visible = true;
-                    MainGumScreenGlueInstance.FlyInAnimation.Play(this);
+                    GameOver();
 
                     enemyBullet.Destroy();
                 }
@@ -277,16 +318,17 @@ namespace ShmupInvaders.Screens
                         _newWave = false;
                         WaveIndicatorInstance.ApplyState("WaveState", "FlyInStart");
                     }).After(4.0);
+
+                    WaveIndicatorInstance.Visible = true;
+                    MainGumScreenGlueInstance.FlyInAnimation.Play(this);
                 }
                 else
                 {
                     // YOU WIN!
-                    WaveIndicatorInstance.TextInstanceText = "YOU ";
-                    WaveIndicatorInstance.WaveTextInstanceText = "WIN!!!";
+                    YouWin();
                 }
 
-                WaveIndicatorInstance.Visible = true;
-                MainGumScreenGlueInstance.FlyInAnimation.Play(this);
+                
             }
         }
 

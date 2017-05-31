@@ -65,10 +65,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Waves</Name>
     </None>
-    <None Include="GumProject\Components\Score.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Score</Name>
-    </None>
     <None Include="GumProject\Components\WaveIndicator.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WaveIndicator</Name>
@@ -81,6 +77,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
     </None>
+    <None Include="GumProject\FontCache\Font18Bauhaus 93.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Bauhaus 93</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Bauhaus 93_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Bauhaus 93_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Calibri.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Calibri</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Calibri_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Calibri_0</Name>
+    </None>
     <None Include="GumProject\FontCache\Font18Franklin Gothic Book.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Franklin Gothic Book</Name>
@@ -88,6 +100,38 @@
     <None Include="GumProject\FontCache\Font18Franklin Gothic Book_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Franklin Gothic Book_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Georgia.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Georgia</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Georgia_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Georgia_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Lucida Console.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Lucida Console</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Lucida Console_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Lucida Console_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Malgun Gothic.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Malgun Gothic</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Malgun Gothic_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Malgun Gothic_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Quartz MS.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Quartz MS</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Quartz MS_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Quartz MS_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font18Rockwell.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -165,6 +209,242 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font48Verdana_1</Name>
     </None>
+    <None Include="GumProject\FontCache\Font72Malgun Gothic.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Malgun Gothic</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Malgun Gothic_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Malgun Gothic_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Malgun Gothic_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Malgun Gothic_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Malgun Gothic_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Malgun Gothic_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Mistral.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Mistral</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Mistral_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Mistral_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Mistral_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Mistral_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Mistral_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Mistral_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Playbill.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Playbill</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Playbill_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Playbill_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Playbill_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Playbill_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Poor Richard.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Poor Richard</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Poor Richard_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Poor Richard_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Poor Richard_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Poor Richard_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Poor Richard_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Poor Richard_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Quartz MS.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Quartz MS</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Quartz MS_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Quartz MS_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Quartz MS_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Quartz MS_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Rage Italic.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Rage Italic</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Rage Italic_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Rage Italic_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Rage Italic_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Rage Italic_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Rage Italic_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Rage Italic_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Ravie.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Ravie</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Ravie_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Ravie_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Ravie_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Ravie_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Ravie_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Ravie_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Ravie_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Ravie_3</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Ravie_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Ravie_4</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_3</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_4</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_5</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Segoe Keycaps_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Segoe Keycaps_6</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun-ExtB.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun-ExtB</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun-ExtB_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun-ExtB_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun-ExtB_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun-ExtB_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72SimSun_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72SimSun_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Stencil.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Stencil</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Stencil_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Stencil_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Stencil_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Stencil_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Stencil_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Stencil_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Sylfaen.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Sylfaen</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Sylfaen_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Sylfaen_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Sylfaen_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Sylfaen_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Sylfaen_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Sylfaen_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Symbol.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Symbol</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Symbol_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Symbol_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Symbol_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Symbol_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Symbol_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Symbol_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Tahoma.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Tahoma</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Tahoma_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Tahoma_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Tahoma_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Tahoma_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Tahoma_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Tahoma_2</Name>
+    </None>
     <None Include="GumProject\FontCache\Font72Verdana.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Verdana</Name>
@@ -185,9 +465,57 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Verdana_3</Name>
     </None>
+    <None Include="GumProject\FontCache\Font72Vivaldi.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Vivaldi</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Vivaldi_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Vivaldi_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Vivaldi_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Vivaldi_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Vivaldi_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Vivaldi_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Vivaldi_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Vivaldi_3</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Wasco Sans.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Wasco Sans</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Wasco Sans_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Wasco Sans_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Wasco Sans_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Wasco Sans_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font84Quartz MS.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font84Quartz MS</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font84Quartz MS_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font84Quartz MS_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font84Quartz MS_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font84Quartz MS_1</Name>
+    </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
+    </None>
+    <None Include="GumProject\Screens\GameOverScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GameOverScreen</Name>
     </None>
     <None Include="GumProject\Screens\MainGameScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -196,6 +524,10 @@
     <None Include="GumProject\Screens\MenuScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MenuScreen</Name>
+    </None>
+    <None Include="GumProject\Screens\WinScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WinScreen</Name>
     </None>
     <None Include="GumProject\Standards\Circle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

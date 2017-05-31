@@ -8,6 +8,10 @@
   <RestrictToUnitValues>true</RestrictToUnitValues>
   <Guides />
   <ScreenReference>
+    <Name>GameOverScreen</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>MainGameScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
@@ -15,10 +19,10 @@
     <Name>MenuScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
-  <ComponentReference>
-    <Name>Score</Name>
-    <ElementType>Component</ElementType>
-  </ComponentReference>
+  <ScreenReference>
+    <Name>WinScreen</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
   <ComponentReference>
     <Name>WaveIndicator</Name>
     <ElementType>Component</ElementType>
