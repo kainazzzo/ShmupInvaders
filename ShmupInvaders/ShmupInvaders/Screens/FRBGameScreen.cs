@@ -191,8 +191,9 @@ namespace ShmupInvaders.Screens
 
         private void DestroyBullets()
 	    {
-	        foreach (var playerBullet in PlayerBulletList)
+            for(var pbi = PlayerBulletList.Count - 1; pbi >= 0; pbi--)
 	        {
+                var playerBullet = PlayerBulletList[pbi];
 	            if (playerBullet.Y > RightBoundary.Top)
 	            {
 	                playerBullet.Destroy();
@@ -232,8 +233,9 @@ namespace ShmupInvaders.Screens
 
         private void HandleEnemyBulletCollision()
         {
-            foreach (var enemyBullet in EnemyBulletList)
+            for (var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
             {
+                var enemyBullet = EnemyBulletList[ebi];
                 if (enemyBullet.CollideAgainst(PlayerShipInstance))
                 {
                     // You Lose!
@@ -251,45 +253,57 @@ namespace ShmupInvaders.Screens
 
         private void HandlePlayerBulletCollision()
         {
-            foreach (var playerBullet in PlayerBulletList)
+            for (var pbi = PlayerBulletList.Count - 1; pbi >= 0; pbi--)
             {
+                var playerBullet = PlayerBulletList[pbi];
+
                 if (!playerBullet.CollideAgainst(ShipContainerInstance)) continue;
 
-                foreach (var shipEntity in ShipEntityList)
+                for(var sei = ShipEntityList.Count - 1; sei >= 0; sei--)
                 {
-                    if (playerBullet.CollideAgainst(shipEntity) && shipEntity.SpriteInstance.CurrentChainName != "Explosion")
+                    var shipEntity = ShipEntityList[sei];
+                    if (HandleShipHit(shipEntity, playerBullet))
                     {
                         playerBullet.Destroy();
+                        break;
+                    }
+                }
 
-                        FlashEnemyShip(shipEntity);
+                for (var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
+                {
+                    var enemyBullet = EnemyBulletList[ebi];
+                    if (playerBullet.CollideAgainst(enemyBullet))
+                    {
+                        // Spawn ricochet
+                        SpawnRicochet(enemyBullet);
+                        enemyBullet.Destroy();
+                        playerBullet.Destroy();
+                    }
+                }
+            }
 
+            for (var rbi = RicochetList.Count - 1; rbi >= 0; rbi--)
+            {
+                var ricochetBullet = RicochetList[rbi];
+                for(var esi = ShipEntityList.Count - 1; esi >= 0; esi--)
+                {
+                    var enemyShip = ShipEntityList[esi];
 
-                        if (shipEntity.TotalHits++ < shipEntity.HitsToKill - 1)
-                        {
-                            this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
-                                .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+                    if (HandleShipHit(enemyShip, ricochetBullet))
+                    {
+                        ricochetBullet.Destroy();
+                        break;
+                    }
+                }
 
-                            shipEntity.DamageInstance.Play();
-                            continue;
-                        }
-                        else
-                        {
-                            shipEntity.SpriteInstance.ColorOperation = ColorOperation.None;
-                        }
-
-                        shipEntity.SpriteInstance.CurrentChainName = "Explosion";
-                        shipEntity.SpriteInstance.TextureScale = .6f;
-                        shipEntity.NextBullet = PauseAdjustedCurrentTime + 1.0;
-                        shipEntity.Detach();
-                        shipEntity.ExplosionInstance.Play();
-
-                        this.Call(() =>
-                        {
-                            shipEntity.Destroy();
-                            RecalculateContainerWidth();
-                        }).After(.55);
-
-                        //Score += shipEntity.PointValue;
+                for (var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
+                {
+                    var enemyBullet = EnemyBulletList[ebi];
+                    if (enemyBullet.CollideAgainst(ricochetBullet))
+                    {
+                        SpawnRicochet(enemyBullet);
+                        ricochetBullet.Destroy();
+                        enemyBullet.Destroy();
                         break;
                     }
                 }
@@ -297,6 +311,11 @@ namespace ShmupInvaders.Screens
 
             if (ShipEntityList.Count == 0 && !_newWave)
             {
+                for(var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
+                {
+                    EnemyBulletList[ebi].Destroy();
+                }
+
                 _newWave = true;
                 // All ships destroyed. Start new wave:
                 LineSpawnerInstance.FastSpeed(true);
@@ -330,6 +349,93 @@ namespace ShmupInvaders.Screens
 
                 
             }
+        }
+
+        private bool HandleShipHit(ShipEntity shipEntity, ICollidable bullet)
+        {
+            if (bullet.CollideAgainst(shipEntity) && shipEntity.SpriteInstance.CurrentChainName != "Explosion")
+            {
+                FlashEnemyShip(shipEntity);
+
+
+                if (shipEntity.TotalHits++ < shipEntity.HitsToKill - 1)
+                {
+                    this.Call(() => shipEntity.SpriteInstance.ColorOperation = ColorOperation.None)
+                        .After(TimeSpan.FromMilliseconds(10).TotalSeconds);
+
+                    shipEntity.DamageInstance.Play();
+                    return true;
+                }
+                else
+                {
+                    shipEntity.SpriteInstance.ColorOperation = ColorOperation.None;
+                }
+
+                shipEntity.SpriteInstance.CurrentChainName = "Explosion";
+                shipEntity.SpriteInstance.TextureScale = .6f;
+                shipEntity.NextBullet = PauseAdjustedCurrentTime + 1.0;
+                shipEntity.Detach();
+                shipEntity.ExplosionInstance.Play();
+
+                this.Call(() =>
+                {
+                    shipEntity.Destroy();
+                    RecalculateContainerWidth();
+                }).After(.55);
+
+                //Score += shipEntity.PointValue;
+                return true;
+            }
+            return false;
+        }
+
+        private void SpawnRicochet(PositionedObject enemyBullet)
+        {
+            var up = RicochetFactory.CreateNew();
+            var down = RicochetFactory.CreateNew();
+            var left = RicochetFactory.CreateNew();
+            var right = RicochetFactory.CreateNew();
+            var upleft = RicochetFactory.CreateNew();
+            var upright = RicochetFactory.CreateNew();
+            var downright = RicochetFactory.CreateNew();
+            var downleft = RicochetFactory.CreateNew();
+
+            up.CurrentDirectionState = Ricochet.Direction.Up;
+            down.CurrentDirectionState = Ricochet.Direction.Down;
+            left.CurrentDirectionState = Ricochet.Direction.Left;
+            right.CurrentDirectionState = Ricochet.Direction.Right;
+            upleft.CurrentDirectionState = Ricochet.Direction.UpLeft;
+            upright.CurrentDirectionState = Ricochet.Direction.UpRight;
+            downright.CurrentDirectionState = Ricochet.Direction.DownRight;
+            downleft.CurrentDirectionState = Ricochet.Direction.DownLeft;
+
+            up.Position = down.Position = left.Position = right.Position 
+                = upleft.Position = upright.Position = downright.Position = downleft.Position = enemyBullet.Position;
+
+            up.YVelocity = 1 * RicochetSpeed;
+            down.YVelocity = -1 * RicochetSpeed;
+            left.XVelocity = -1 * RicochetSpeed;
+            right.XVelocity = 1 * RicochetSpeed;
+
+            upleft.XVelocity = left.XVelocity;
+            upleft.YVelocity = up.YVelocity;
+            upright.XVelocity = right.XVelocity;
+            upright.YVelocity = up.YVelocity;
+            downright.XVelocity = right.XVelocity;
+            downright.YVelocity = down.YVelocity;
+            downleft.XVelocity = left.XVelocity;
+            downleft.YVelocity = down.YVelocity;
+
+            this.Call(() => {
+                up.Destroy();
+                down.Destroy();
+                left.Destroy();
+                right.Destroy();
+                upleft.Destroy();
+                upright.Destroy();
+                downright.Destroy();
+                downleft.Destroy();
+            }).After(RicochetTTL);
         }
 
         private static void FlashEnemyShip(ShipEntity shipEntity)

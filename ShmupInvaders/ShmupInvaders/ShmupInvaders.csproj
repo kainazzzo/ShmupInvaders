@@ -136,6 +136,10 @@
     <Compile Include="Entities\PlayerShip.Generated.cs">
       <DependentUpon>PlayerShip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Ricochet.cs" />
+    <Compile Include="Entities\Ricochet.Generated.cs">
+      <DependentUpon>Ricochet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ShipContainer.cs" />
     <Compile Include="Entities\ShipContainer.Generated.cs">
       <DependentUpon>ShipContainer.cs</DependentUpon>
@@ -147,6 +151,7 @@
     <Compile Include="Factories\ColorLineFactory.Generated.cs" />
     <Compile Include="Factories\EnemyBulletFactory.Generated.cs" />
     <Compile Include="Factories\PlayerBulletFactory.Generated.cs" />
+    <Compile Include="Factories\RicochetFactory.Generated.cs" />
     <Compile Include="Factories\ShipEntityFactory.Generated.cs" />
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GumCore\AnimationFrame.cs" />
