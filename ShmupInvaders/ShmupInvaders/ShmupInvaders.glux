@@ -265,7 +265,7 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>Y</Member>
-            <ValueAsFloat>150</ValueAsFloat>
+            <ValueAsFloat>500</ValueAsFloat>
           </CustomProperty>
           <SourceType>Entity</SourceType>
           <SourceClassType>Entities\ShipContainer</SourceClassType>

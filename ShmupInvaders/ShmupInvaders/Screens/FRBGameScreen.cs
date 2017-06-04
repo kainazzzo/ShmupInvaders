@@ -204,9 +204,9 @@ namespace ShmupInvaders.Screens
 	    private void HandleCollisions()
 	    {
 	        HandlePlayerCollision();
-
 	        HandleBulletCollisions();
-	    }
+            HandleRicochetCollisions();
+        }
 
 	    private void HandlePlayerCollision()
 	    {
@@ -257,9 +257,7 @@ namespace ShmupInvaders.Screens
             {
                 var playerBullet = PlayerBulletList[pbi];
 
-                if (!playerBullet.CollideAgainst(ShipContainerInstance)) continue;
-
-                for(var sei = ShipEntityList.Count - 1; sei >= 0; sei--)
+                for (var sei = ShipEntityList.Count - 1; sei >= 0; sei--)
                 {
                     var shipEntity = ShipEntityList[sei];
                     if (HandleShipHit(shipEntity, playerBullet))
@@ -282,36 +280,9 @@ namespace ShmupInvaders.Screens
                 }
             }
 
-            for (var rbi = RicochetList.Count - 1; rbi >= 0; rbi--)
-            {
-                var ricochetBullet = RicochetList[rbi];
-                for(var esi = ShipEntityList.Count - 1; esi >= 0; esi--)
-                {
-                    var enemyShip = ShipEntityList[esi];
-
-                    if (HandleShipHit(enemyShip, ricochetBullet))
-                    {
-                        ricochetBullet.Destroy();
-                        break;
-                    }
-                }
-
-                for (var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
-                {
-                    var enemyBullet = EnemyBulletList[ebi];
-                    if (enemyBullet.CollideAgainst(ricochetBullet))
-                    {
-                        SpawnRicochet(enemyBullet);
-                        ricochetBullet.Destroy();
-                        enemyBullet.Destroy();
-                        break;
-                    }
-                }
-            }
-
             if (ShipEntityList.Count == 0 && !_newWave)
             {
-                for(var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
+                for (var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
                 {
                     EnemyBulletList[ebi].Destroy();
                 }
@@ -347,7 +318,37 @@ namespace ShmupInvaders.Screens
                     YouWin();
                 }
 
-                
+
+            }
+        }
+
+        private void HandleRicochetCollisions()
+        {
+            for (var rbi = RicochetList.Count - 1; rbi >= 0; rbi--)
+            {
+                var ricochetBullet = RicochetList[rbi];
+                for (var esi = ShipEntityList.Count - 1; esi >= 0; esi--)
+                {
+                    var enemyShip = ShipEntityList[esi];
+
+                    if (HandleShipHit(enemyShip, ricochetBullet))
+                    {
+                        ricochetBullet.Destroy();
+                        break;
+                    }
+                }
+
+                for (var ebi = EnemyBulletList.Count - 1; ebi >= 0; ebi--)
+                {
+                    var enemyBullet = EnemyBulletList[ebi];
+                    if (enemyBullet.CollideAgainst(ricochetBullet))
+                    {
+                        SpawnRicochet(enemyBullet);
+                        ricochetBullet.Destroy();
+                        enemyBullet.Destroy();
+                        break;
+                    }
+                }
             }
         }
 
