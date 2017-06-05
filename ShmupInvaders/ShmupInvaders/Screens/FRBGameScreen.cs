@@ -273,9 +273,16 @@ namespace ShmupInvaders.Screens
                     if (playerBullet.CollideAgainst(enemyBullet))
                     {
                         // Spawn ricochet
-                        SpawnRicochet(enemyBullet);
-                        enemyBullet.Destroy();
-                        playerBullet.Destroy();
+                        enemyBullet.CurrentFlashState = EnemyBullet.Flash.Lit;
+                        enemyBullet.Velocity = Vector3.Zero;
+
+                        this.Call(() =>
+                        {
+                            enemyBullet.CurrentFlashState = EnemyBullet.Flash.Normal;
+                            SpawnRicochet(enemyBullet);
+                            enemyBullet.Destroy();
+                            playerBullet.Destroy();
+                        }).After(TimeSpan.FromMilliseconds(100).TotalSeconds);
                     }
                 }
             }
@@ -390,7 +397,7 @@ namespace ShmupInvaders.Screens
             return false;
         }
 
-        private void SpawnRicochet(PositionedObject enemyBullet)
+        private void SpawnRicochet(EnemyBullet enemyBullet)
         {
             var up = RicochetFactory.CreateNew();
             var down = RicochetFactory.CreateNew();
@@ -437,6 +444,8 @@ namespace ShmupInvaders.Screens
                 downright.Destroy();
                 downleft.Destroy();
             }).After(RicochetTTL);
+
+            RicochetSoundEffectInstance.Play();
         }
 
         private static void FlashEnemyShip(ShipEntity shipEntity)
