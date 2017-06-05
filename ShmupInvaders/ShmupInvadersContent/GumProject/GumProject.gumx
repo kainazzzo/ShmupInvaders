@@ -20,13 +20,13 @@
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ScreenReference>
+    <Name>WaveScreen</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>WinScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
-  <ComponentReference>
-    <Name>WaveIndicator</Name>
-    <ElementType>Component</ElementType>
-  </ComponentReference>
   <StandardElementReference>
     <Name>Circle</Name>
     <ElementType>Standard</ElementType>

@@ -61,7 +61,7 @@ namespace ShmupInvaders.Screens
 
                 LineSpawnerInstance.FastSpeed(false);
                 _newWave = false;
-                WaveIndicatorInstance.Visible = false;
+                WaveScreenText.Visible = false;
             }).After(4);
 
             FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.Mars, false, true);
@@ -142,6 +142,27 @@ namespace ShmupInvaders.Screens
 
             
             shakerY.PositionChanged += position => Camera.Main.Position.Y = position;
+        }
+
+        private void DisplayWaveScreen()
+        {
+            var step = TextTimeStep;
+
+            var text = $"WAVE {_wave + 1}";
+
+            WaveScreenText.Visible = true;
+            WaveScreenText.Text = "";
+
+
+            for (var it = 1; it <= text.Length; ++it)
+            {
+                var newText = text.Substring(0, it);
+
+                this.Call(() =>
+                {
+                    WaveScreenText.Text = newText;
+                }).After(step * it);
+            }
         }
 
         private void GameOver()
@@ -301,7 +322,7 @@ namespace ShmupInvaders.Screens
                 // All ships destroyed. Start new wave:
                 LineSpawnerInstance.FastSpeed(true);
 
-                WaveDisplay = _wave + 1;
+                DisplayWaveScreen();
                 PlayerShipInstance.Velocity = Vector3.Zero;
                 PlayerShipInstance.CurrentFlyState = PlayerShip.Fly.Straight;
 
@@ -314,13 +335,10 @@ namespace ShmupInvaders.Screens
                         ++_wave;
                         CurrentWave = GlobalContent.Waves[_wave.ToString()];
                         LineSpawnerInstance.FastSpeed(false);
-                        WaveIndicatorInstance.Visible = false;
+                        WaveScreenText.Visible = false;
                         _newWave = false;
-                        WaveIndicatorInstance.ApplyState("WaveState", "FlyInStart");
                     }).After(4.0);
 
-                    WaveIndicatorInstance.Visible = true;
-                    MainGumScreenGlueInstance.FlyInAnimation.Play(this);
                 }
                 else
                 {

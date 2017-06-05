@@ -69,10 +69,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Waves</Name>
     </None>
-    <None Include="GumProject\Components\WaveIndicator.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>WaveIndicator</Name>
-    </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>
@@ -528,6 +524,10 @@
     <None Include="GumProject\Screens\MenuScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MenuScreen</Name>
+    </None>
+    <None Include="GumProject\Screens\WaveScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WaveScreen</Name>
     </None>
     <None Include="GumProject\Screens\WinScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

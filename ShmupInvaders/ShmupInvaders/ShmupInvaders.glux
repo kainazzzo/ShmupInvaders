@@ -170,27 +170,6 @@
           <Properties>
             <PropertySave>
               <Name>Type</Name>
-              <ValueAsString>string</ValueAsString>
-            </PropertySave>
-            <PropertySave>
-              <Name>OverridingPropertyType</Name>
-              <ValueAsString>int</ValueAsString>
-            </PropertySave>
-            <PropertySave>
-              <Name>TypeConverter</Name>
-              <ValueAsString>&lt;default&gt;</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>WaveDisplay</Name>
-          <Type>string</Type>
-          <DefaultValue xsi:type="xsd:int">1</DefaultValue>
-          <SourceObject>WaveIndicatorInstance</SourceObject>
-          <SourceObjectProperty>WaveTextInstanceText</SourceObjectProperty>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
               <ValueAsString>ShmupInvaders.DataTypes.Waves</ValueAsString>
             </PropertySave>
           </Properties>
@@ -263,6 +242,12 @@
           <Name>Sounds/ricochet.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+        <ReferencedFileSave>
+          <Name>GumProject/Screens/WaveScreen.gusx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>FlatRedBall.Gum.GumIdb</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
       </ReferencedFiles>
@@ -512,15 +497,6 @@
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
         <NamedObjectSave>
-          <SourceType>File</SourceType>
-          <SourceFile>GumProject/Screens/MainGameScreen.gusx</SourceFile>
-          <SourceName>WaveIndicatorInstance (ShmupInvaders.GumRuntimes.WaveIndicatorRuntime)</SourceName>
-          <InstanceName>WaveIndicatorInstance</InstanceName>
-          <AttachToContainer>true</AttachToContainer>
-          <GenerateTimedEmit>true</GenerateTimedEmit>
-          <IndependentOfCamera>true</IndependentOfCamera>
-        </NamedObjectSave>
-        <NamedObjectSave>
           <SourceType>FlatRedBallType</SourceType>
           <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
           <SourceClassGenericType>Entities\EnemyBullet</SourceClassGenericType>
@@ -561,6 +537,15 @@
           <SourceFile>Sounds/ricochet.wav</SourceFile>
           <SourceName>Entire File (SoundEffect)</SourceName>
           <InstanceName>RicochetSoundEffectInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/WaveScreen.gusx</SourceFile>
+          <SourceName>TextInstance (ShmupInvaders.GumRuntimes.TextRuntime)</SourceName>
+          <InstanceName>WaveScreenText</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
@@ -1902,7 +1887,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceFile />
