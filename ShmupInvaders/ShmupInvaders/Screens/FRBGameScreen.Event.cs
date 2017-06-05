@@ -50,7 +50,7 @@ namespace ShmupInvaders.Screens
 
             ShipContainerInstance.AxisAlignedRectangleInstance.Height = height;
 
-            RecalculateContainerWidth();
+            RecalculateContainerSize();
         }
 
         private void SetShipState(string shipName, ShipEntity ship)

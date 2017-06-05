@@ -63,6 +63,8 @@ namespace ShmupInvaders.Screens
                 _newWave = false;
                 WaveIndicatorInstance.Visible = false;
             }).After(4);
+
+            FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.Mars, false, true);
         }
 
 	    
@@ -75,7 +77,8 @@ namespace ShmupInvaders.Screens
 
 	    void CustomActivity(bool firstTimeCalled)
 		{
-	        if (_gameOver == false && _newWave == false)
+            FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.Mars, false, true);
+            if (_gameOver == false && _newWave == false)
 	        {
 	            if (this.ShipContainerInstance.CollideAgainstBounce(this.LeftBoundary, 0, 1, 1) ||
 	                this.ShipContainerInstance.CollideAgainstBounce(this.RightBoundary, 0, 1, 1))
@@ -388,7 +391,7 @@ namespace ShmupInvaders.Screens
                 this.Call(() =>
                 {
                     shipEntity.Destroy();
-                    RecalculateContainerWidth();
+                    RecalculateContainerSize();
                 }).After(.55);
 
                 //Score += shipEntity.PointValue;
@@ -457,18 +460,24 @@ namespace ShmupInvaders.Screens
 	        shipEntity.SpriteInstance.Green = 255f;
 	    }
 
-	    private void RecalculateContainerWidth()
+	    private void RecalculateContainerSize()
 	    {
 	        if (ShipEntityList.Count > 0)
 	        {
 	            var minX = ShipEntityList.Min(s => s.RelativeX);
 	            var maxX = ShipEntityList.Max(s => s.RelativeX);
+                var minY = ShipEntityList.Min(s => s.RelativeY);
+                var maxY = ShipEntityList.Max(s => s.RelativeY);
 
 	            var width = maxX - minX;
 	            width += ColumnSpacing;
+                var height = maxY - minY;
+                height += RowSpacing;
 
 	            ShipContainerInstance.AxisAlignedRectangleInstance.Width = width;
-	            ShipContainerInstance.AxisAlignedRectangleInstance.RelativeX = minX + width/2f - ColumnSpacing/2.0f;
+                ShipContainerInstance.AxisAlignedRectangleInstance.Height = height;
+                ShipContainerInstance.AxisAlignedRectangleInstance.RelativeX = minX + width / 2f - ColumnSpacing / 2f;
+                ShipContainerInstance.AxisAlignedRectangleInstance.RelativeY = minY + height / 2f - RowSpacing / 2f;
 	        }
 	    }
 

@@ -1,5 +1,5 @@
 "Name (string, required)",Hits (int),BulletFrequencyMin (float),BulletFrequencyMax (float),BulletSpeed (float)
-OrangeShip,1,2,10,-100
-OrangeTea,2,3,11,-100
-OrangeHorseshoe,3,4,12,-100
-OrangeEye,4,5,13,-100
+OrangeShip,1,5,10,-100
+OrangeTea,2,4,9,-100
+OrangeHorseshoe,3,3,8,-100
+OrangeEye,4,2,7,-100
