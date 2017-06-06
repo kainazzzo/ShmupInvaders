@@ -56,7 +56,7 @@ namespace ShmupInvaders
 
 			CameraSetup.SetupCamera(SpriteManager.Camera, graphics);
 			GlobalContent.Initialize();
-			FlatRedBall.Screens.ScreenManager.Start(typeof(ShmupInvaders.Screens.FRBGameScreen));
+			FlatRedBall.Screens.ScreenManager.Start(typeof(ShmupInvaders.Screens.SplashScreen));
 
             base.Initialize();
         }
