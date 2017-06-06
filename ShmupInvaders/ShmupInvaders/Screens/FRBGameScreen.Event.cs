@@ -20,6 +20,8 @@ namespace ShmupInvaders.Screens
             var currentY = 0;
             var currentX = 0;
 
+            waveShots = 0;
+            waveHits = 0;
             foreach (var shipName in CurrentWave.Ships)
             {
                 var ship = ShipEntityFactory.CreateNew();

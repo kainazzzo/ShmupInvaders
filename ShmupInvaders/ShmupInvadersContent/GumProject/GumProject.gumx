@@ -6,6 +6,7 @@
   <DefaultCanvasHeight>600</DefaultCanvasHeight>
   <ShowOutlines>true</ShowOutlines>
   <RestrictToUnitValues>true</RestrictToUnitValues>
+  <RestrictFileNamesForAndroid>false</RestrictFileNamesForAndroid>
   <Guides />
   <ScreenReference>
     <Name>GameOverScreen</Name>
@@ -23,6 +24,10 @@
     <Name>WinScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
+  <ComponentReference>
+    <Name>StatisticsComponent</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
   <StandardElementReference>
     <Name>Circle</Name>
     <ElementType>Standard</ElementType>

@@ -211,6 +211,114 @@
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">0.2</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WaveAccuracyNumText</Name>
+          <Type>string</Type>
+          <SourceObject>StatisticsComponentInstance</SourceObject>
+          <SourceObjectProperty>AccuracyNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WaveHitsNumText</Name>
+          <Type>string</Type>
+          <SourceObject>StatisticsComponentInstance</SourceObject>
+          <SourceObjectProperty>HitsNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WaveShotsNumText</Name>
+          <Type>string</Type>
+          <SourceObject>StatisticsComponentInstance</SourceObject>
+          <SourceObjectProperty>ShotsNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>GameOverAccuracyNumText</Name>
+          <Type>string</Type>
+          <SourceObject>GameOverStatisticsComponentRuntime</SourceObject>
+          <SourceObjectProperty>AccuracyNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>GameOverHitsNumText</Name>
+          <Type>string</Type>
+          <SourceObject>GameOverStatisticsComponentRuntime</SourceObject>
+          <SourceObjectProperty>HitsNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>GameOverShotsNumText</Name>
+          <Type>string</Type>
+          <SourceObject>GameOverStatisticsComponentRuntime</SourceObject>
+          <SourceObjectProperty>ShotsNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WinAccuracyNumText</Name>
+          <Type>string</Type>
+          <SourceObject>WinStatisticsComponentRuntime</SourceObject>
+          <SourceObjectProperty>AccuracyNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WinHitsNumText</Name>
+          <Type>string</Type>
+          <SourceObject>WinStatisticsComponentRuntime</SourceObject>
+          <SourceObjectProperty>HitsNumText</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>string</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WinShotsNumText</Name>
+          <Type>string</Type>
+          <SourceObject>WinStatisticsComponentRuntime</SourceObject>
+          <SourceObjectProperty>ShotsNumText</SourceObjectProperty>
+        </CustomVariable>
       </CustomVariables>
       <Name>Screens\FRBGameScreen</Name>
       <ReferencedFiles>
@@ -565,11 +673,46 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/WaveScreen.gusx</SourceFile>
+          <SourceName>StatisticsComponentInstance (ShmupInvaders.GumRuntimes.StatisticsComponentRuntime)</SourceName>
+          <InstanceName>StatisticsComponentInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/GameOverScreen.gusx</SourceFile>
+          <SourceName>StatisticsComponentInstance (ShmupInvaders.GumRuntimes.StatisticsComponentRuntime)</SourceName>
+          <InstanceName>GameOverStatisticsComponentRuntime</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/WinScreen.gusx</SourceFile>
+          <SourceName>StatisticsComponentInstance (ShmupInvaders.GumRuntimes.StatisticsComponentRuntime)</SourceName>
+          <InstanceName>WinStatisticsComponentRuntime</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/WinScreen.gusx</SourceFile>
+          <SourceName>RestartLabel (ShmupInvaders.GumRuntimes.TextRuntime)</SourceName>
+          <InstanceName>WinRestartLabelText</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
     </ScreenSave>
     <ScreenSave>
       <Tags>
-        <string>GLUE</string>
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>

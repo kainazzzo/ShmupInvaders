@@ -99,15 +99,36 @@ namespace RenderingLibrary.Graphics
                 }
                 else
                 {
-                    if (FileManager.IsRelative(texturesToLoad[i]))
-                    {
+                    string fileName;
+
+
+                    // fnt files treat ./ as relative, but FRB Android treats ./ as
+                    // absolute. Since the value comes directly from .fnt, we want to 
+                    // consider ./ as relative instead of whatever FRB thinks is relative:
+                    //if (FileManager.IsRelative(texturesToLoad[i]))
+                    bool isRelative = texturesToLoad[i].StartsWith("./") || FileManager.IsRelative(texturesToLoad[i]);
+
+                    if (isRelative)
+                    { 
+                        if (FileManager.IsRelative(directory))
+                        {
+                            fileName = FileManager.RelativeDirectory + directory + texturesToLoad[i];
+                        }
+                        else
+                        {
+                            fileName = directory + texturesToLoad[i];
+                        }
+
                         //mTextures[i] = LoaderManager.Self.Load(directory + texturesToLoad[i], managers);
-                        mTextures[i] = LoaderManager.Self.LoadContent<Texture2D>(directory + texturesToLoad[i]);
                     }
                     else
                     {
                         //mTextures[i] = LoaderManager.Self.Load(texturesToLoad[i], managers);
-                        mTextures[i] = LoaderManager.Self.LoadContent<Texture2D>(texturesToLoad[i]);
+                        fileName = texturesToLoad[i];
+                    }
+                    if (ToolsUtilities.FileManager.FileExists(fileName))
+                    {
+                        mTextures[i] = LoaderManager.Self.LoadContent<Texture2D>(fileName);
                     }
                 }
             } 
@@ -328,7 +349,7 @@ namespace RenderingLibrary.Graphics
                 StringFunctions.GetIntAfter(
                 "lineHeight=", fontPattern);
 
-            if (mTextures.Length > 0)
+            if (mTextures.Length > 0 && mTextures[0] != null)
             {
                 //ToDo: Atlas support  **************************************************************
                 BitmapCharacterInfo space = FillBitmapCharacterInfo(' ', fontPattern,

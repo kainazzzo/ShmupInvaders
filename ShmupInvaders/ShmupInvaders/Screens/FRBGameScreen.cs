@@ -41,6 +41,11 @@ namespace ShmupInvaders.Screens
 	    private Vector3 _initialShipContainerPosition;
 	    private int _wave = 1;
 	    private bool _gameOver;
+        int waveShots = 0;
+        int totalShots = 0;
+        int waveHits = 0;
+        int totalHits = 0;
+
 
 	    private static readonly string[] WaveColors = { "Purple", "Orange", "Green", "Blue" };
         private bool _newWave = false;
@@ -50,6 +55,7 @@ namespace ShmupInvaders.Screens
             GameOverText.Visible = false;
             RestartLabelText.Visible = false;
 		    _initialShipContainerPosition = ShipContainerInstance.Position;
+            waveShots = totalShots = waveHits = totalHits = 0;
 
 		    InitializeInput();
 
@@ -161,7 +167,7 @@ namespace ShmupInvaders.Screens
             WaveScreenText.Visible = true;
             WaveScreenText.Text = "";
 
-
+            
             for (var it = 1; it <= text.Length; ++it)
             {
                 var newText = text.Substring(0, it);
@@ -171,6 +177,14 @@ namespace ShmupInvaders.Screens
                     WaveScreenText.Text = newText;
                 }).After(step * it);
             }
+
+            WaveHitsNumText = waveHits.ToString();
+            WaveShotsNumText = waveShots.ToString();
+
+            WaveAccuracyNumText = (((float)waveHits / waveShots) * 100.0f).ToString("##.##") + "%";
+
+            StatisticsComponentInstance.Visible = true;
+
         }
 
         private void GameOver()
@@ -211,6 +225,13 @@ namespace ShmupInvaders.Screens
                     RestartLabelText.Text = newText;
                 }).After((it + lastTime) * step);
             }
+
+            GameOverHitsNumText = totalHits.ToString();
+            GameOverShotsNumText = totalShots.ToString();
+
+            GameOverAccuracyNumText = (((float)totalHits / totalShots) * 100.0f).ToString("##.##") + "%";
+
+            GameOverStatisticsComponentRuntime.Visible = true;
         }
 
         private void YouWin()
@@ -226,6 +247,7 @@ namespace ShmupInvaders.Screens
 
             var step = TextTimeStep;
 
+            var lastTime = 0;
             for (var it = 1; it <= text.Length; ++it)
             {
                 var newText = text.Substring(0, it);
@@ -234,7 +256,32 @@ namespace ShmupInvaders.Screens
                 {
                     WinScreenText.Text = newText;
                 }).After(step * it);
+                lastTime = it;
             }
+
+
+            text = WinRestartLabelText.Text;
+
+            WinRestartLabelText.Visible = true;
+            WinRestartLabelText.Text = "";
+            for (var it = 1; it <= text.Length; ++it)
+            {
+                var newText = text.Substring(0, it);
+                this.Call(() =>
+                {
+                    WinRestartLabelText.Text = newText;
+                }).After((it + lastTime) * step);
+            }
+
+            StatisticsComponentInstance.Visible = false;
+            WaveScreenText.Visible = false;
+
+            WinHitsNumText = totalHits.ToString();
+            WinShotsNumText = totalShots.ToString();
+
+            WinAccuracyNumText = (((float)totalHits / totalShots) * 100.0f).ToString("##.##") + "%";
+
+            WinStatisticsComponentRuntime.Visible = true;
         }
 
         private void DestroyBullets()
@@ -311,6 +358,8 @@ namespace ShmupInvaders.Screens
                     if (HandleShipHit(shipEntity, playerBullet))
                     {
                         playerBullet.Destroy();
+                        ++waveHits;
+                        ++totalHits;
                         break;
                     }
                 }
@@ -323,6 +372,8 @@ namespace ShmupInvaders.Screens
                         // Spawn ricochet
                         enemyBullet.CurrentFlashState = EnemyBullet.Flash.Lit;
                         enemyBullet.Velocity = Vector3.Zero;
+                        ++waveHits;
+                        ++totalHits;
 
                         this.Call(() =>
                         {
@@ -360,6 +411,7 @@ namespace ShmupInvaders.Screens
                         CurrentWave = GlobalContent.Waves[_wave.ToString()];
                         LineSpawnerInstance.FastSpeed(false);
                         WaveScreenText.Visible = false;
+                        StatisticsComponentInstance.Visible = false;
                         _newWave = false;
                     }).After(4.0);
 
@@ -543,6 +595,9 @@ namespace ShmupInvaders.Screens
 	        if (_playerFireInput.WasJustPressed && PlayerBulletList.Count < MaxBullets)
 	        {
 	            var bullet = PlayerBulletFactory.CreateNew();
+                ++totalShots;
+                ++waveShots;
+
 	            bullet.Position = PlayerShipInstance.Position;
 	            bullet.Y += 22;
 	            bullet.YVelocity = PlayerBulletSpeed;

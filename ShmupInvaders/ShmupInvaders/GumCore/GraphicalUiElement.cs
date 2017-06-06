@@ -77,6 +77,10 @@ namespace Gum.Wireframe
 
         bool mIsLayoutSuspended = false;
 
+        // We need ThreadStatic in case screens are being loaded
+        // in the background - we don't want to interrupt the foreground
+        // layout behavior.
+        [ThreadStatic]
         public static bool IsAllLayoutSuspended = false;
 
         Dictionary<string, Gum.DataTypes.Variables.StateSave> mStates =
@@ -697,7 +701,9 @@ namespace Gum.Wireframe
             set;
         }
 
-
+        /// <summary>
+        /// The pixel coorinate of the top of the displayed region.
+        /// </summary>
         public int TextureTop
         {
             get
@@ -714,6 +720,10 @@ namespace Gum.Wireframe
             }
         }
 
+
+        /// <summary>
+        /// The pixel coorinate of the left of the displayed region.
+        /// </summary>
         public int TextureLeft
         {
             get
@@ -729,6 +739,11 @@ namespace Gum.Wireframe
                 }
             }
         }
+
+
+        /// <summary>
+        /// The pixel width of the displayed region.
+        /// </summary>
         public int TextureWidth
         {
             get
@@ -744,6 +759,11 @@ namespace Gum.Wireframe
                 }
             }
         }
+
+
+        /// <summary>
+        /// The pixel height of the displayed region.
+        /// </summary>
         public int TextureHeight
         {
             get
@@ -876,22 +896,6 @@ namespace Gum.Wireframe
 
             mContainedObjectAsIpso = containedObject as IRenderableIpso;
             mContainedObjectAsIVisible = containedObject as IVisible;
-
-            if (containedObject is global::RenderingLibrary.Math.Geometry.LineRectangle)
-            {
-                // All elements use line rectangles to draw themselves, but we don't
-                // want them to show up in runtime (usually). We have a LocalVisible bool
-                // which can be set to false to prevent the rectangles from drawing.
-                // Update: We used to only set the LocalVisible if the object was a container,
-                // but elements also inherit from container. We could check the base type, but then
-                // elements that inherit from other elements would still show up. We'll ignore the element
-                // name and just set LineRectangles to invisible if we're dealing with elements, no matter what.
-                //if (this.ElementSave != null && ElementSave.Name == "Container")
-                if (this.ElementSave != null)
-                {
-                    (containedObject as global::RenderingLibrary.Math.Geometry.LineRectangle).LocalVisible = ShowLineRectangles;
-                }
-            }
 
             if (containedObject != null)
             {
@@ -1205,6 +1209,8 @@ namespace Gum.Wireframe
 
 
                         UpdatePosition(parentWidth, parentHeight);
+
+                        mContainedObjectAsIpso.Rotation = this.GetAbsoluteRotation();
                     }
 
 
@@ -1448,9 +1454,14 @@ namespace Gum.Wireframe
 
             AdjustOffsetsByUnits(parentWidth, parentHeight, ref unitOffsetX, ref unitOffsetY);
 #if DEBUG
-            if (float.IsNaN(unitOffsetX) || float.IsNaN(unitOffsetY))
+            if (float.IsNaN(unitOffsetX))
             {
-                throw new Exception("Invalid unit offsets");
+                throw new Exception("Invalid unitOffsetX: " + unitOffsetX);
+            }
+
+            if ( float.IsNaN(unitOffsetY))
+            {
+                throw new Exception("Invalid unitOffsetY: " + unitOffsetY);
             }
 #endif
 
@@ -2247,6 +2258,10 @@ namespace Gum.Wireframe
                 {
                     managers.ShapeManager.Add(mContainedObjectAsIpso as LineCircle, layer);
                 }
+                else if(mContainedObjectAsIpso is InvisibleRenderable)
+                {
+                    managers.SpriteManager.Add(mContainedObjectAsIpso as InvisibleRenderable, layer);
+                }
                 else
                 {
                     throw new NotImplementedException();
@@ -2350,6 +2365,10 @@ namespace Gum.Wireframe
                 else if(mContainedObjectAsIpso is LineCircle)
                 {
                     mManagers.ShapeManager.Remove(mContainedObjectAsIpso as LineCircle);
+                }
+                else if(mContainedObjectAsIpso is InvisibleRenderable)
+                {
+                    mManagers.SpriteManager.Remove(mContainedObjectAsIpso as InvisibleRenderable);
                 }
                 else if (mContainedObjectAsIpso != null)
                 {
@@ -2824,33 +2843,40 @@ namespace Gum.Wireframe
             else if (propertyName == "Font Scale")
             {
                 ((Text)mContainedObjectAsIpso).FontScale = (float)value;
+                handled = true;
+
             }
             else if (propertyName == "Font")
             {
                 this.Font = value as string;
 
                 UpdateToFontValues();
+                handled = true;
             }
             else if (propertyName == "UseCustomFont")
             {
                 this.UseCustomFont = (bool)value;
                 UpdateToFontValues();
+                handled = true;
             }
 
             else if (propertyName == "CustomFontFile")
             {
                 CustomFontFile = (string)value;
                 UpdateToFontValues();
+                handled = true;
             }
             else if (propertyName == "FontSize")
             {
                 FontSize = (int)value;
                 UpdateToFontValues();
+                handled = true;
             }
             else if (propertyName == "OutlineThickness")
             {
                 OutlineThickness = (int)value;
                 UpdateToFontValues();
+                handled = true;
             }
             else if (propertyName == "Blend")
             {
@@ -2860,6 +2886,7 @@ namespace Gum.Wireframe
 
                 var text = mContainedObjectAsIpso as Text;
                 text.BlendState = valueAsXnaBlend;
+                handled = true;
             }
             return handled;
         }
@@ -2916,7 +2943,7 @@ namespace Gum.Wireframe
 
                             contentLoader.AddDisposable(fullFileName, font);
                         }
-                        if (font.Textures.Any(item => item.IsDisposed))
+                        if (font.Textures.Any(item => item?.IsDisposed == true))
                         {
                             throw new InvalidOperationException("The returned font has a disposed texture");
                         }
@@ -2994,7 +3021,7 @@ namespace Gum.Wireframe
             }
         }
 
-        public void ApplyState(DataTypes.Variables.StateSave state)
+        public virtual void ApplyState(DataTypes.Variables.StateSave state)
         {
             this.SuspendLayout(true);
 

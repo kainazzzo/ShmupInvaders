@@ -193,6 +193,7 @@
     <Compile Include="GumCore\InstanceSaveExtensionMethods.GumRuntime.cs">
       <DependentUpon>InstanceSaveExtensionMethods.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumCore\InvisibleRenderable.cs" />
     <Compile Include="GumCore\IPositionedSizedObject.cs" />
     <Compile Include="GumCore\IRenderable.cs" />
     <Compile Include="GumCore\IRenderableIpso.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\StatisticsComponentRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\WaveScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\WinScreenRuntime.Generated.cs" />

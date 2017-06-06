@@ -47,6 +47,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>RestartLabel.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>RestartLabel.Width</Name>
       <Value xsi:type="xsd:float">0</Value>
@@ -61,7 +67,7 @@
     <Variable>
       <Type>float</Type>
       <Name>RestartLabel.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
+      <Value xsi:type="xsd:float">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -79,7 +85,7 @@
     <Variable>
       <Type>float</Type>
       <Name>RestartLabel.Y</Name>
-      <Value xsi:type="xsd:float">86</Value>
+      <Value xsi:type="xsd:float">218</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -92,6 +98,24 @@
       <Type>PositionUnitType</Type>
       <Name>RestartLabel.Y Units</Name>
       <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>StatisticsComponentInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>StatisticsComponentInstance.X</Name>
+      <Value xsi:type="xsd:float">191</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>StatisticsComponentInstance.Y</Name>
+      <Value xsi:type="xsd:float">335</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -139,7 +163,7 @@
     <Variable>
       <Type>bool</Type>
       <Name>TextInstance.Visible</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
+      <Value xsi:type="xsd:boolean">false</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -198,5 +222,9 @@
   <Instance>
     <Name>RestartLabel</Name>
     <BaseType>Text</BaseType>
+  </Instance>
+  <Instance>
+    <Name>StatisticsComponentInstance</Name>
+    <BaseType>StatisticsComponent</BaseType>
   </Instance>
 </ScreenSave>

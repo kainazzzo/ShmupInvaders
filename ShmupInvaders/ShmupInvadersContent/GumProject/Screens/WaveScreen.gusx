@@ -5,6 +5,54 @@
     <Name>Default</Name>
     <Variable>
       <Type>string</Type>
+      <Name>StatisticsComponentInstance.AccuracyNumText</Name>
+      <ExposedAsName>StatisticsComponentInstanceAccuracyNumText</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>StatisticsComponentInstance.HitsNumText</Name>
+      <ExposedAsName>StatisticsComponentInstanceHitsNumText</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>StatisticsComponentInstance.ShotsNumText</Name>
+      <ExposedAsName>StatisticsComponentInstanceShotsNumText</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>StatisticsComponentInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>StatisticsComponentInstance.X</Name>
+      <Value xsi:type="xsd:float">39</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>StatisticsComponentInstance.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>StatisticsComponentInstance.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>StatisticsComponentInstance.Y</Name>
+      <Value xsi:type="xsd:float">352</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
       <Name>TextInstance.Font</Name>
       <Value xsi:type="xsd:string">Quartz MS</Value>
       <SetsValue>true</SetsValue>
@@ -104,5 +152,9 @@
   <Instance>
     <Name>TextInstance</Name>
     <BaseType>Text</BaseType>
+  </Instance>
+  <Instance>
+    <Name>StatisticsComponentInstance</Name>
+    <BaseType>StatisticsComponent</BaseType>
   </Instance>
 </ScreenSave>
