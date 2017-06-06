@@ -218,7 +218,7 @@
     <Variable>
       <Type>float</Type>
       <Name>AccuracyNum.X</Name>
-      <Value xsi:type="xsd:float">254</Value>
+      <Value xsi:type="xsd:float">260</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
