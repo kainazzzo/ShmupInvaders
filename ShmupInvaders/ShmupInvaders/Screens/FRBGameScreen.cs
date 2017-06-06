@@ -29,6 +29,7 @@ using StateInterpolationPlugin;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using Vector3 = Microsoft.Xna.Framework.Vector3;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
+using FlatRedBall.Screens;
 
 namespace ShmupInvaders.Screens
 {
@@ -36,6 +37,7 @@ namespace ShmupInvaders.Screens
 	{
 	    private I1DInput _playerShipInput;
 	    private IPressableInput _playerFireInput;
+        private IPressableInput _restartInput;
 	    private Vector3 _initialShipContainerPosition;
 	    private int _wave = 1;
 	    private bool _gameOver;
@@ -46,6 +48,7 @@ namespace ShmupInvaders.Screens
 	    void CustomInitialize()
 		{
             GameOverText.Visible = false;
+            RestartLabelText.Visible = false;
 		    _initialShipContainerPosition = ShipContainerInstance.Position;
 
 		    InitializeInput();
@@ -73,6 +76,7 @@ namespace ShmupInvaders.Screens
 	    {
 	        _playerShipInput = InputManager.Keyboard.Get1DInput(MoveLeftKey, MoveRightKey);
 	        _playerFireInput = InputManager.Keyboard.GetKey(FireBulletKey);
+            _restartInput = InputManager.Keyboard.GetKey(Keys.R);
 	    }
 
 	    void CustomActivity(bool firstTimeCalled)
@@ -107,6 +111,10 @@ namespace ShmupInvaders.Screens
                 FireEnemyBullets();
 	            DestroyBullets();
 	        }
+            else if (_gameOver && _restartInput.WasJustPressed)
+            {
+                ScreenManager.MoveToScreen(this.GetType());
+            }
 		}
 
         private void FireEnemyBullets()
@@ -178,6 +186,7 @@ namespace ShmupInvaders.Screens
 
             var step = TextTimeStep;
 
+            var lastTime = 1;
             for(var it = 1; it <= text.Length; ++it)
             {
                 var newText = text.Substring(0, it);
@@ -186,6 +195,21 @@ namespace ShmupInvaders.Screens
                 {
                     GameOverText.Text = newText;
                 }).After(step * it);
+
+                lastTime = it;
+            }
+
+            text = RestartLabelText.Text;
+
+            RestartLabelText.Visible = true;
+            RestartLabelText.Text = "";
+            for(var it = 1; it <= text.Length; ++it)
+            {
+                var newText = text.Substring(0, it);
+                this.Call(() =>
+                {
+                    RestartLabelText.Text = newText;
+                }).After((it + lastTime) * step);
             }
         }
 

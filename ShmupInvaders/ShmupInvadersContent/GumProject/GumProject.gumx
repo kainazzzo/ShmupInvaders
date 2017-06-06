@@ -16,10 +16,6 @@
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ScreenReference>
-    <Name>MenuScreen</Name>
-    <ElementType>Screen</ElementType>
-  </ScreenReference>
-  <ScreenReference>
     <Name>WaveScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>

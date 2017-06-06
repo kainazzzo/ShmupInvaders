@@ -247,7 +247,6 @@
     <Compile Include="GumRuntimes\GameOverScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
     <Compile Include="GumRuntimes\MainGameScreenRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\MenuScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
@@ -268,10 +267,6 @@
     </Compile>
     <Compile Include="Screens\FRBGameScreen.Generated.Event.cs">
       <DependentUpon>FRBGameScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\MenuScreen.cs" />
-    <Compile Include="Screens\MenuScreen.Generated.cs">
-      <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\CameraSetup.cs" />
     <Compile Include="StateInterpolation\Back.cs" />
