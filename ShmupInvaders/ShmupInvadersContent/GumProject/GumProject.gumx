@@ -17,6 +17,10 @@
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ScreenReference>
+    <Name>MenuGumScreen</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>WaveScreen</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>

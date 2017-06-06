@@ -21,6 +21,7 @@ using FlatRedBall.Localization;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using Vector3 = Microsoft.Xna.Framework.Vector3;
 using Texture2D = Microsoft.Xna.Framework.Graphics.Texture2D;
+using FlatRedBall.Screens;
 
 namespace ShmupInvaders.Screens
 {
@@ -35,7 +36,10 @@ namespace ShmupInvaders.Screens
 
 		void CustomActivity(bool firstTimeCalled)
 		{
-
+            if (InputManager.Keyboard.AnyKeyPushed())
+            {
+                ScreenManager.MoveToScreen(typeof(FRBGameScreen));
+            }
 
 		}
 

@@ -101,6 +101,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font84Quartz MS_1</Name>
     </None>
+    <None Include="GumProject\FontCache\Font86Quartz MS.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font86Quartz MS</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font86Quartz MS_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font86Quartz MS_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font86Quartz MS_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font86Quartz MS_1</Name>
+    </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
@@ -112,6 +124,10 @@
     <None Include="GumProject\Screens\MainGameScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MainGameScreen</Name>
+    </None>
+    <None Include="GumProject\Screens\MenuGumScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MenuGumScreen</Name>
     </None>
     <None Include="GumProject\Screens\WaveScreen.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -19,6 +19,7 @@
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,10 +30,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -59,6 +60,18 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F6C68D421BEDDF85BAF462F3492C3FE99D7DA295</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ShmupInvaders_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FlatRedBall, Version=2011.11.13.911, Culture=neutral, processorArchitecture=x86">
@@ -248,6 +261,7 @@
     <Compile Include="GumRuntimes\GameOverScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
     <Compile Include="GumRuntimes\MainGameScreenRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\MenuGumScreenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
@@ -269,6 +283,10 @@
     </Compile>
     <Compile Include="Screens\FRBGameScreen.Generated.Event.cs">
       <DependentUpon>FRBGameScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\MenuScreen.cs" />
+    <Compile Include="Screens\MenuScreen.Generated.cs">
+      <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\SplashScreen.Generated.cs">
@@ -324,6 +342,7 @@
     </None>
     <None Include="Libraries\Xna4Pc\Debug\FlatRedBall.dll" />
     <None Include="Libraries\Xna4Pc\Debug\FlatRedBall.XML" />
+    <None Include="ShmupInvaders_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
